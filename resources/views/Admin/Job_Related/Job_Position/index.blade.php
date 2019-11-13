@@ -20,7 +20,7 @@
                   <div class="card-header">{{ __('Job Positions ') }}</div>
 
                   <div class="col-md-8 offset-md-0">
-                      <a href="{{ route('EJpostion_create_page')}}"  class="btn btn-primary">
+                      <a href="{{ route('Eposition_create_page')}}"  class="btn btn-primary">
                           {{ __('Create New') }}
                       </a>
                   </div>
@@ -35,10 +35,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($ejpositions as $ejposition)
+                            @foreach($positions as $position)
                             <tr>
-                                <td>{{$ejposition->employee_job_position_id}}</td>
-                                <td>{{$ejposition->employee_job_position_name}}</td>
+                                <td>{{$position->id}}</td>
+                                <td>{{$position->name}}</td>
                                 <td><a href="" class="btn btn-primary">Edit</a></td>
                                 <td>
                                     <form action="" method="post">

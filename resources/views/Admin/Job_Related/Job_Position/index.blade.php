@@ -37,11 +37,11 @@
                         <tbody>
                             @foreach($ejpositions as $ejposition)
                             <tr>
-                                <td>{{$ejposition->id}}</td>
-                                <td>{{$ejposition->name}}</td>
-                                <td><a href="{{ route('EJpostion_update_page', $ejposition->id)}}" class="btn btn-primary">Edit</a></td>
+                                <td>{{$ejposition->employee_job_position_id}}</td>
+                                <td>{{$ejposition->employee_job_position_name}}</td>
+                                <td><a href="" class="btn btn-primary">Edit</a></td>
                                 <td>
-                                    <form action="{{ route('EJpostion_delete', $ejposition->id)}}" method="post">
+                                    <form action="" method="post">
                                       @csrf
                                       @method('DELETE')
                                       <button class="btn btn-danger" type="submit">Delete</button>

@@ -4,9 +4,9 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Employee_job_position extends Model
+class Emp_position extends Model
 {
   protected $fillable = [
-        'name'
+        'employee_job_position_name'
     ];
 }

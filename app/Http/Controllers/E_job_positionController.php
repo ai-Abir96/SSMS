@@ -23,9 +23,9 @@ class E_job_positionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function positioncreate()
     {
-        return view('');
+        return view('Admin.Job_Related.Job_Position.create');
     }
 
     /**
@@ -36,7 +36,15 @@ class E_job_positionController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+          'employee_job_position_name' => 'required',
+        ]);
+
+
+        Employee_job_position::create($request->all());
+
+          return redirect()->route('EJpostion_index')
+                    ->with('success','Job Position created successfully.');
     }
 
     /**

@@ -15,16 +15,18 @@ class CreateEmpInfosTable extends Migration
     {
         Schema::create('emp_infos', function (Blueprint $table) {
           $table->bigIncrements('id');
-          $table->string('employee_fname');
-          $table->string('employee_lname');
-          $table->string('employee_image');
+          $table->string('emp_image');
+          $table->string('emp_fname');
+          $table->string('emp_lname');
+          $table->string('emp_phone1');
+          $table->string('emp_phone2');
+          $table->string('emp_email');
           $table->string('employee_nid');
-          $table->string('employee_birth_date');
-          $table->string('employee_address');
-          $table->string('employee_contact_no');
-          $table->string('employee_alternate_cn');
-          $table->string('employee_email');
-          $table->string('employee_marital_status');
+          $table->string('emp_birth_date');
+          $table->string('emp_age');
+          $table->string('emp_preaddress');
+          $table->string('emp_peraddress');
+          $table->string('emp_marital_status');
           $table->timestamps();
         });
     }

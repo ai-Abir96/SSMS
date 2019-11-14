@@ -71,25 +71,25 @@ Route::DELETE('/user/delete/{user}', 'UserController@delete')->name('user_delete
 
 
 //employee job position
-Route::get('/employee/position/index', 'E_positionController@index')->name('Eposition_index');
+Route::get('/employee/position/index', 'Employee\E_positionController@index')->name('Eposition_index');
 
-Route::get('/employee/position/create', 'E_positionController@create')->name('Eposition_create_page');
-Route::post('/employee/position/create', 'E_positionController@store')->name('Epostion_create');
+Route::get('/employee/position/create', 'Employee\E_positionController@create')->name('Eposition_create_page');
+Route::post('/employee/position/create', 'Employee\E_positionController@store')->name('Epostion_create');
 
-Route::get('/employee/job/position/{id}/update', 'E_positionController@edit')->name('Epostion_update_page');
-Route::PATCH('/employee/job/position/update/{id}', 'E_positionController@update')->name('Epostion_update');
+Route::get('/employee/job/position/{id}/update', 'Employee\E_positionController@edit')->name('Epostion_update_page');
+Route::PATCH('/employee/job/position/update/{id}', 'Employee\E_positionController@update')->name('Epostion_update');
 
-Route::PATCH('/employee/job/position/delete/{id}', 'E_positionController@destroy')->name('Epostion_delete');
+Route::PATCH('/employee/job/position/delete/{id}', 'Employee\E_positionController@destroy')->name('Epostion_delete');
 //employee job position end
 
 //employee job status
-Route::get('/employee/status/index', 'E_statusController@index')->name('Estatus_index');
+Route::get('/employee/status/index', 'Employee\E_statusController@index')->name('Estatus_index');
 
-Route::get('/employee/status/create', 'E_statusController@create')->name('Estatus_create_page');
-Route::post('/employee/status/create', 'E_statusController@store')->name('Estatus_create');
+Route::get('/employee/status/create', 'Employee\E_statusController@create')->name('Estatus_create_page');
+Route::post('/employee/status/create', 'Employee\E_statusController@store')->name('Estatus_create');
 
-Route::get('/employee/status/{id}/update', 'E_statusController@edit')->name('Estatus_update_page');
-Route::PATCH('/employee/status/update/{id}', 'E_statusController@update')->name('Estatus_update');
+Route::get('/employee/status/{id}/update', 'Employee\E_statusController@edit')->name('Estatus_update_page');
+Route::PATCH('/employee/status/update/{id}', 'Employee\E_statusController@update')->name('Estatus_update');
 
-Route::PATCH('/employee/status/delete/{id}', 'E_statusController@destroy')->name('Estatus_delete');
+Route::PATCH('/employee/status/delete/{id}', 'Employee\E_statusController@destroy')->name('Estatus_delete');
 //employee job status end

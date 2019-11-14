@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Employee;
+use App\Http\Controllers\Controller;
 use App\Emp_position;
 use Illuminate\Http\Request;
 

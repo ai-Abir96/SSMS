@@ -1,7 +1,9 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Employee;
 
+
+use App\Http\Controllers\Controller;
 use App\Emp_status;
 use Illuminate\Http\Request;
 
@@ -64,10 +66,10 @@ class E_statusController extends Controller
     }
 
 
-    public function destroy(Emp_status $emp_status)
+    public function destroy($id)
     {
         Emp_status::where('id',$id)->delete();
 
-        return redirect->route('Estatus_index')->with('success','Job Position Deleted successfully.');
+        return redirect()->route('Estatus_index')->with('success','Job Position Deleted successfully.');
     }
 }

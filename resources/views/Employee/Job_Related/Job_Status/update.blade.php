@@ -4,7 +4,7 @@
 
 <div class="card uper">
   <div class="card-header">
-    Update Roles
+    Update Employee Status
   </div>
   <div class="card-body">
     @if ($errors->any())
@@ -16,13 +16,13 @@
         </ul>
       </div><br />
     @endif
-    <form method="POST" action="{{ route('Epostion_update', $position->id) }}">
+    <form method="POST" action="{{ route('Estatus_update', $status->id) }}">
       @csrf
       @method('PATCH')
           <div class="form-group">
 
               <label for="name">Name:</label>
-              <input type="text" class="form-control" name="name" value="{{ $position->name }}"/>
+              <input type="text" class="form-control" name="name" value="{{ $status->name }}"/>
           </div>
 
           <button type="submit" class="btn btn-primary">Update</button>

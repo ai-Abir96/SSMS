@@ -5,10 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create Job Position') }}</div>
+                <div class="card-header">{{ __('Create Employee Status') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('Epostion_create') }}">
+                    <form method="POST" action="{{ route('Estatus_create') }}">
                         @csrf
 
                         <div class="form-group row">

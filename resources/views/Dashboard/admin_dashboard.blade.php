@@ -90,7 +90,7 @@
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="">Employee Information</a>
           <a class="dropdown-item" href="">Salary Information</a>
-          <a class="dropdown-item" href=""><i class="fas fa-fw fa-folder"></i><span>Job Status</span></a>
+          <a class="dropdown-item" href="{{ route('Estatus_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Status</span></a>
           <a class="dropdown-item" href="{{ route('Eposition_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Position</span></a>
         </div>
       </li>

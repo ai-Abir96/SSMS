@@ -11,13 +11,13 @@ class E_positionController extends Controller
   public function index()
   {
     $positions = Emp_position::all();
-    return view('Admin.Job_Related.Job_Position.index',compact('positions'));
+    return view('Employee.Job_Related.Job_Position.index',compact('positions'));
   }
 
 
   public function create()
   {
-      return view('Admin.Job_Related.Job_Position.create');
+      return view('Employee.Job_Related.Job_Position.create');
   }
 
 
@@ -46,7 +46,7 @@ class E_positionController extends Controller
   {
     $position = Emp_position::findOrFail($id);
 
-     return view('Admin.Job_Related.Job_Position.update', compact('position'));
+     return view('Employee.Job_Related.Job_Position.update', compact('position'));
   }
 
 

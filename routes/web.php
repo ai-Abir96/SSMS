@@ -76,10 +76,10 @@ Route::get('/employee/position/index', 'E_positionController@index')->name('Epos
 Route::get('/employee/position/create', 'E_positionController@create')->name('Eposition_create_page');
 Route::post('/employee/position/create', 'E_positionController@store')->name('Epostion_create');
 
-//Route::get('/employee/job/position/{id}/update', 'E_job_positionController@RoleUpdate')->name('EJpostion_update_page');
-//Route::PATCH('/employee/job/position/update/{id}', 'E_job_positionController@update')->name('EJpostion_update');
+Route::get('/employee/job/position/{id}/update', 'E_positionController@edit')->name('Epostion_update_page');
+Route::PATCH('/employee/job/position/update/{id}', 'E_positionController@update')->name('Epostion_update');
 
-//Route::DELETE('/employee/job/position/delete/{id}', 'E_job_positionController@delete')->name('EJpostion_delete');
+Route::PATCH('/employee/job/position/delete/{id}', 'E_positionController@destroy')->name('Epostion_delete');
 //employee job position end
 
 //employee job status

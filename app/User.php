@@ -19,7 +19,7 @@ class User extends Authenticatable
         'name', 'email', 'password',
     ];
 
-    
+
 
     /**
      * The attributes that should be hidden for arrays.
@@ -44,6 +44,10 @@ class User extends Authenticatable
     public function roles()
     {
       return $this->belongsToMany('App\Role');
+    }
+    public function emp_infos()
+    {
+      return $this->hasOne('App\Emp_info');
     }
 
 

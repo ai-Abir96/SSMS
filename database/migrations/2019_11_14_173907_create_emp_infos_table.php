@@ -15,6 +15,7 @@ class CreateEmpInfosTable extends Migration
     {
         Schema::create('emp_infos', function (Blueprint $table) {
           $table->bigIncrements('id');
+          $table->bigInteger('emp_user_id')->unsigned();
           $table->string('emp_image');
           $table->string('emp_fname');
           $table->string('emp_lname');
@@ -28,6 +29,8 @@ class CreateEmpInfosTable extends Migration
           $table->string('emp_peraddress');
           $table->string('emp_marital_status');
           $table->timestamps();
+
+          $table->foreign('emp_user_id')->references('id')->on('users')->onCascade('delete');
         });
     }
 

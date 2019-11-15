@@ -13,6 +13,8 @@
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('dashboard/css/admin.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/form-snippet.css') }}" rel="stylesheet">
+
 
 
 </head>
@@ -139,7 +141,7 @@
 
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('dashboard/js/admin.min.js') }}" defer></script>
-
+  <script src="{{ asset('js/form_snippet.js') }}" defer></script>
 
 </body>
 

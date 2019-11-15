@@ -17,9 +17,16 @@ class Emp_info extends Model
       'employee_nid',
       'emp_birth_date',
       'emp_age',
+      'emp_blood',
       'emp_preaddress',
       'emp_peraddress',
       'emp_marital_status',
+      'ec_name',
+      'ec_phone1',
+      'ec_phone2',
+      'ec_relation',
+      'ec_address',
+
 
   ];
   protected $hidden = [

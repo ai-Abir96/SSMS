@@ -25,9 +25,15 @@ class CreateEmpInfosTable extends Migration
           $table->string('employee_nid');
           $table->string('emp_birth_date');
           $table->string('emp_age');
+          $table->string('emp_blood');
           $table->string('emp_preaddress');
           $table->string('emp_peraddress');
           $table->string('emp_marital_status');
+          $table->string('ec_name');
+          $table->string('ec_phone1');
+          $table->string('ec_phone2');
+          $table->string('ec_relation');
+          $table->string('ec_address');
           $table->timestamps();
 
           $table->foreign('emp_user_id')->references('id')->on('users')->onCascade('delete');

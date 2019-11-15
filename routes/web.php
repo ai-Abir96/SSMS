@@ -97,10 +97,11 @@ Route::PATCH('/employee/status/delete/{id}', 'Employee\E_statusController@destro
 Route::get('/employee/information/index', 'Employee\E_infoController@index')->name('Einfo_index');
 
 Route::get('/employee/information/create', 'Employee\E_infoController@create')->name('Einfo_create_page');
-Route::post('/employee/information/create', 'Employee\E_infoController@store')->name('Einfo_create');
+Route::post('/employee/information/create/created', 'Employee\E_infoController@store')->name('Einfo_create');
 
 Route::get('/employee/information/{id}/update', 'Employee\E_infoController@edit')->name('Einfo_update_page');
 Route::PATCH('/employee/information/update/{id}', 'Employee\E_infoController@update')->name('Einfo_update');
 
 Route::PATCH('/employee/information/delete/{id}', 'Employee\E_infoController@destroy')->name('Einfo_delete');
 //employee information end
+Route::get('/explore','Employee\E_infoController@explore')->name('explore');

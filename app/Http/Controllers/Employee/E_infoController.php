@@ -37,16 +37,21 @@ class E_infoController extends Controller
           'employee_nid'=> ['required','integer','min:13','max:20'],
           'emp_birth_date'=> ['required','date_format:"d-m-Y"'],
           'emp_age'=> ['required','integer','max:3'],
-          'emp_preaddress'=> ['required','string','max:50'],
-          'emp_peraddress'=> ['required','string','max:50'],
+          'emp_blood'=> ['required','string'],
+          'emp_preaddress'=> ['required','string','max:100'],
+          'emp_peraddress'=> ['required','string','max:100'],
           'emp_marital_status'=> ['required','string'],
+          'ec_name'=> ['required','string','max:50'],
+          'ec_phone1'=> ['required','integer','min:11','max:11'],
+          'ec_phone2'=> ['integer','min:11','max:11'],
+          'ec_relation'=> ['required','string'],
+          'ec_address'=> ['required','string','max:100'],
+
         ]);
     }
 
     public function store(Request $request)
     {
-
-    //  $user = User::find($id);
 
       $last_inserted_id = Emp_info::insertGetId([
         'emp_user_id' => $request -> emp_user_id,
@@ -59,9 +64,15 @@ class E_infoController extends Controller
         'employee_nid'=>$request-> employee_nid ,
         'emp_birth_date'=> $request-> emp_birth_date,
         'emp_age'=> $request-> emp_age,
+        'emp_blood' => $request-> emp_blood,
         'emp_preaddress'=> $request-> emp_preaddress,
         'emp_peraddress'=> $request-> emp_peraddress,
         'emp_marital_status'=>$request-> emp_marital_status,
+        'ec_name'=> $request -> ec_name,
+        'ec_phone1'=> $request -> ec_phone1,
+        'ec_phone2'=> $request -> ec_phone2,
+        'ec_relation'=> $request -> ec_relation,
+        'ec_address'=> $request -> ec_address,
 
       ]);
 
@@ -71,6 +82,10 @@ class E_infoController extends Controller
               $photo_extension  =  $photo_upload -> getClientOriginalExtension();
               $photo_name       =  $last_inserted_id . "." . $photo_extension;
               Image::make($photo_upload)->resize(320,240)->save(base_path('public/Employee/Employee_Image/'.$photo_name),100);
+
+              Emp_info::find($last_inserted_id)->update([
+                  'emp_image' => $photo_name,
+                      ]);
                     }
 
       return redirect()->route('Einfo_index')
@@ -97,6 +112,11 @@ class E_infoController extends Controller
     public function update(Request $request, Emp_info $emp_info)
     {
 
+    }
+
+    public function explore()
+    {
+        return view('Employee.Personal_Info.explore');
     }
 
 

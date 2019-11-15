@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Emp_info extends Model
 {
   protected $fillable = [
-
+      'emp_user_id',
       'emp_image',
       'emp_fname',
       'emp_lname',
@@ -23,7 +23,7 @@ class Emp_info extends Model
 
   ];
   protected $hidden = [
-      'emp_user_id',
+
   ];
 
   public function users()

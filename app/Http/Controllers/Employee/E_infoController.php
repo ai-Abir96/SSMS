@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Employee;
 use App\Http\Controllers\Controller;
 use App\Emp_info;
+use App\User;
 use Illuminate\Http\Request;
 use Image;
 
@@ -20,6 +21,7 @@ class E_infoController extends Controller
     public function create()
     {
         return view('Employee.Personal_Info.create');
+
     }
 
     protected function validator(Request $request)
@@ -44,9 +46,10 @@ class E_infoController extends Controller
     public function store(Request $request)
     {
 
-        
-      $last_inserted_id = Emp_info::insertGetId([
+    //  $user = User::find($id);
 
+      $last_inserted_id = Emp_info::insertGetId([
+        'emp_user_id' => $request -> emp_user_id,
         'emp_image'=> $request-> emp_image,
         'emp_fname'=> $request-> emp_fname,
         'emp_lname'=> $request-> emp_lname,
@@ -68,9 +71,6 @@ class E_infoController extends Controller
               $photo_extension  =  $photo_upload -> getClientOriginalExtension();
               $photo_name       =  $last_inserted_id . "." . $photo_extension;
               Image::make($photo_upload)->resize(320,240)->save(base_path('public/Employee/Employee_Image/'.$photo_name),100);
-              Emp_info::find($last_inserted_id)->update([
-                'emp_image'          => $photo_name,
-                  ]);
                     }
 
       return redirect()->route('Einfo_index')

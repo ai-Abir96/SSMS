@@ -37,4 +37,12 @@ class Emp_info extends Model
   {
     return $this->belongsTo('App\User');
   }
+
+  public function emp_jobs()
+  {
+    return $this->belongsTo('App\Emp_job');
+  }
+
+
+
 }

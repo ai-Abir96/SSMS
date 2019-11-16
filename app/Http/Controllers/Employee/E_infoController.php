@@ -77,19 +77,20 @@ class E_infoController extends Controller
       ]);
 
 
-      if ($request->hasFile('emp_image')) {
+      if ($request->hasFile('emp_image'))
+      {
               $photo_upload     =  $request -> emp_image;
               $photo_extension  =  $photo_upload -> getClientOriginalExtension();
               $photo_name       =  $last_inserted_id . "." . $photo_extension;
-              Image::make($photo_upload)->resize(320,240)->save(base_path('public/Employee/Employee_Image/'.$photo_name),100);
+              Image::make($photo_upload)->resize(320,240)->save(base_path('public/Images/Employee_Image/'.$photo_name),100);
 
-              Emp_info::find($last_inserted_id)->update([
-                  'emp_image' => $photo_name,
-                      ]);
-                    }
+              Emp_info::find($last_inserted_id)->update(['emp_image' => $photo_name,]);
+
+
+      }
 
       return redirect()->route('Einfo_index')
-                      ->with('success','Job Position created successfully.');
+                       ->with('success','Employee Information is successfully Added.');
 
 
     }
@@ -114,11 +115,22 @@ class E_infoController extends Controller
 
     }
 
-    public function explore()
+//admin area
+    public function nameinfo()
     {
-        return view('Employee.Personal_Info.explore');
+        $einfo = Emp_info::all();
+        return view('Admin.Emp_Details.nameinfo',compact('einfo'));
+    }
+    public function emergancyinfo()
+    {
+        $einfo = Emp_info::all();
+        return view('Admin.Emp_Details.emergancyinfo',compact('einfo'));
+    }
+    public function contactinfo()
+    {
+        $einfo = Emp_info::all();
+        return view('Admin.Emp_Details.contactinfo',compact('einfo'));
     }
 
-
-
+    //admin area end
 }

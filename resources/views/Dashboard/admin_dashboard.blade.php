@@ -88,14 +88,26 @@
           <i class="fas fa-fw fa-folder"></i>
           <span>Employee</span>
         </a>
-
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="{{ route('Einfo_index') }}"><i class="fas fa-fw fa-folder"></i><span>Employee Information</span></a>
+          <a class="dropdown-item" href="{{ route('emp_nameinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Personal Information</span></a>
+          <a class="dropdown-item" href="{{ route('emp_contactinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Contact Information</span></a>
+          <a class="dropdown-item" href="{{ route('emp_emergancyinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Emergacy Information</span></a>
           <a class="dropdown-item" href=""><i class="fas fa-fw fa-folder"></i><span>Salary Information</span></a>
+        </div>
+      </li>
+
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Others</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
           <a class="dropdown-item" href="{{ route('Estatus_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Status</span></a>
           <a class="dropdown-item" href="{{ route('Eposition_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Position</span></a>
         </div>
       </li>
+
+
 
       <li class="nav-item">
         <a class="nav-link" href=""><i class="fas fa-fw fa-folder"></i><span>Product</span></a>

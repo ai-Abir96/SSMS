@@ -10,7 +10,8 @@
 
                  <!-- One "tab" for each step in the form: -->
                  <div class="tab">Personal Information:
-                    <p><input id="id" type="hidden" value="{{ Auth::user()->id }}" name="emp_user_id" required></p>
+                   <p><input id="id" type="hidden" value="{{ Auth::user()->id }}" name="emp_user_id" required></p>
+
                    <p><input id="emp_image" type="file"  name="emp_image" placeholder="Image" required ></p>
 
                    <p><input id="name" type="text"  name="emp_fname" placeholder="First Name"required ></p>

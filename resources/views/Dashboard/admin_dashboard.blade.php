@@ -46,6 +46,7 @@
     <!-- Navbar -->
     <ul class="navbar-nav ml-auto ml-md-0">
 
+
       <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -92,9 +93,12 @@
           <a class="dropdown-item" href="{{ route('emp_nameinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Personal Information</span></a>
           <a class="dropdown-item" href="{{ route('emp_contactinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Contact Information</span></a>
           <a class="dropdown-item" href="{{ route('emp_emergancyinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Emergacy Information</span></a>
-          <a class="dropdown-item" href=""><i class="fas fa-fw fa-folder"></i><span>Salary Information</span></a>
+          <a class="dropdown-item" href="{{ route('emp_jobinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Job Information</span></a>
+          <a class="dropdown-item" href="{{ route('jobstatus') }}"><i class="fas fa-fw fa-folder"></i><span>Status Information</span></a>
+          <a class="dropdown-item" href="{{ route('Ejob_index') }}"><i class="fas fa-fw fa-folder"></i><span>Salary Information</span></a>
         </div>
       </li>
+
 
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -102,7 +106,7 @@
           <span>Others</span>
         </a>
         <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="{{ route('Estatus_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Status</span></a>
+
           <a class="dropdown-item" href="{{ route('Eposition_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Position</span></a>
         </div>
       </li>

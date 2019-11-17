@@ -82,17 +82,6 @@ Route::PATCH('/employee/job/position/update/{id}', 'Employee\E_positionControlle
 Route::PATCH('/employee/job/position/delete/{id}', 'Employee\E_positionController@destroy')->name('Epostion_delete');
 //employee job position end
 
-//employee job status
-Route::get('/employee/status/index', 'Employee\E_statusController@index')->name('Estatus_index');
-
-Route::get('/employee/status/create', 'Employee\E_statusController@create')->name('Estatus_create_page');
-Route::post('/employee/status/create', 'Employee\E_statusController@store')->name('Estatus_create');
-
-Route::get('/employee/status/{id}/update', 'Employee\E_statusController@edit')->name('Estatus_update_page');
-Route::PATCH('/employee/status/update/{id}', 'Employee\E_statusController@update')->name('Estatus_update');
-
-Route::PATCH('/employee/status/delete/{id}', 'Employee\E_statusController@destroy')->name('Estatus_delete');
-//employee job status end
 
 //employee information
 Route::get('/employee/information/index', 'Employee\E_infoController@index')->name('Einfo_index');
@@ -112,11 +101,18 @@ Route::get('/employee/job/information/index', 'Employee\E_jobController@index')-
 Route::get('/employee/job/information/create', 'Employee\E_jobController@create')->name('Ejob_create_page');
 Route::post('/employee/job/information/create/created', 'Employee\E_jobController@store')->name('Ejob_create');
 
-Route::get('/employee/job/information/{id}/update', 'Employee\E_jobController@edit')->name('Ejob_update_page');
-Route::PATCH('/employee/job/information/update/{id}', 'Employee\E_jobController@update')->name('Ejob_update');
+//Route::get('/employee/job/information/{id}/update', 'Employee\E_jobController@edit')->name('Ejob_update_page');
+Route::PATCH('/employee/job/information/update', 'Employee\E_jobController@update')->name('Ejob_update');
 
 Route::PATCH('/employee/job/information/delete/{id}', 'Employee\E_jobController@destroy')->name('Ejob_delete');
 //employee information end
+
+
+
+
+
+
+
 
 
 /////////admin/////////
@@ -124,5 +120,6 @@ Route::PATCH('/employee/job/information/delete/{id}', 'Employee\E_jobController@
 Route::get('/employee/information/nameinfo', 'Employee\E_infoController@nameinfo')->name('emp_nameinfo');
 Route::get('/employee/information/contactinfo', 'Employee\E_infoController@contactinfo')->name('emp_contactinfo');
 Route::get('/employee/information/emergancyinfo', 'Employee\E_infoController@emergancyinfo')->name('emp_emergancyinfo');
-
-//////
+Route::get('/employee/information/jobstatus', 'Employee\E_jobController@jobstatus')->name('jobstatus');
+Route::get('/employee/information/jobinfo', 'Employee\E_jobController@jobinfo')->name('emp_jobinfo');
+//////////////////////////////////////////

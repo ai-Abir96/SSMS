@@ -15,16 +15,17 @@ class CreateEmpJobsTable extends Migration
     {
         Schema::create('emp_jobs', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->bigInteger('emp_id')-unsigned();
-            $table->string('emp_name');
-            $table->string('designation');
+            $table->bigInteger('emp_id')->unsigned();
+            $table->bigInteger('position_id')->unsigned();
             $table->string('salaray');
             $table->string('bonus');
             $table->string('status');
             $table->string('signing_date');
             $table->string('departing_date');
             $table->timestamps();
+
             $table-> foreign('emp_id')->references('id')->on('emp_infos')->onCascade('delete');
+            $table-> foreign('position_id')->references('id')->on('emp_positions')->onCascade('delete');
         });
     }
 

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+
+use App\Emp_info;
+
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -9,6 +12,7 @@ class DashboardController extends Controller
 
   public function admin_dashboard()
   {
+
       return view('Dashboard.admin_dashboard');
   }
 

@@ -38,7 +38,7 @@
                             @foreach($einfo as $enfo)
                             <tr>
                                 <td>{{$enfo->id}}</td>
-                                <td><img src="{{ asset('public/Images/Employee_Image/') }}/{{ $enfo->emp_image }}" class="square" alt="{{ $enfo->emp_image }}" style="width:50px;height:50px";></td>
+                                <td><img src="{{ asset('Images/Employee_Image') }}/{{ $enfo->emp_image }}" class="rounded" alt="{{ $enfo->emp_image }}" style="width:50px;height:50px";></td>
                                 <td>{{$enfo->emp_fname}}</td>
                                 <td>{{$enfo->emp_lname}}</td>
                                 <td>{{$enfo->employee_nid}}</td>

@@ -89,7 +89,7 @@ class E_infoController extends Controller
 
       }
 
-      return redirect()->route('Einfo_index')
+      return redirect()->route('denied')
                        ->with('success','Employee Information is successfully Added.');
 
 
@@ -115,6 +115,8 @@ class E_infoController extends Controller
 
     }
 
+
+
 //admin area
     public function nameinfo()
     {
@@ -131,6 +133,8 @@ class E_infoController extends Controller
         $einfo = Emp_info::all();
         return view('Admin.Emp_Details.contactinfo',compact('einfo'));
     }
+
+
 
     //admin area end
 }

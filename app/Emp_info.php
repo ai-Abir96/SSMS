@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Emp_info extends Model
 {
   protected $fillable = [
+      'id',
       'emp_user_id',
       'emp_image',
       'emp_fname',
@@ -35,7 +36,7 @@ class Emp_info extends Model
 
   public function users()
   {
-    return $this->belongsTo('App\User');
+    return $this->hasOne('App\User','id','emp_user_id');
   }
 
   public function emp_jobs()

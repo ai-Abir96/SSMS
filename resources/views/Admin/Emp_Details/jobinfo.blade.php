@@ -17,10 +17,10 @@
       <div class="row justify-content-center">
           <div class="col-md-lg">
               <div class="card " >
-                  <div class="card-header"><b>{{ __('Employee Salary') }}</b></div>
+                  <div class="card-header"><b>{{ __('Employee Job Information') }}</b></div>
 
                   <div class="col-md-8 offset-md-0">
-                      <a href="{{ route('Ejob_create_page')}}"  class="btn btn-primary">
+                      <a href="{{ route('Einfo_create_page')}}"  class="btn btn-primary">
                           {{ __('Create New') }}
                       </a>
                   </div>
@@ -34,7 +34,6 @@
                               <td><b>Designation</b></td>
                               <td><b>Salaray</b></td>
                               <td><b>Bonus</b></td>
-                              <td><b>Status</b></td>
                               <td><b>Joining Date</b></td>
                               <td><b>Departing Date</b></td>
 
@@ -45,11 +44,10 @@
                             @foreach($ejob as $ej)
                             <tr>
                                 <td>{{$ej->emp_id}}</td>
-                                <td>{{$ej->emp_infos->emp_lname}}</td>
+                              <td>{{$ej->emp_infos->emp_lname}}</td>
                                 <td>{{$ej->emp_pos->name}}</td>
                                 <td>{{$ej->salaray}}</td>
                                 <td>{{$ej->bonus}}</td>
-                                <td>{{$ej->status}}</td>
                                 <td>{{$ej->signing_date}}</td>
                                 <td>{{$ej->departing_date}}</td>
 

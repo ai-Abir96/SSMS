@@ -41,10 +41,10 @@
                                 <td>{{$ej->emp_infos->emp_lname}}</td>
                                 <td>{{$ej->emp_pos->name}}</td>
                                 @if($ej->status =='Active')
-                                  <td class="bg-success">{{$ej->status}}</td>
+                                  <td class="bg-success rounded">{{$ej->status}}</td>
                                 @endif
                                 @if($ej->status =='On Leave')
-                                  <td class="bg-warning">{{$ej->status}}</td>
+                                  <td class="bg-warning rounded">{{$ej->status}}</td>
                                 @endif
                                 @if($ej->status =='Departed')
                                   <td class="bg-danger rounded">{{$ej->status}}</td>

@@ -26,17 +26,17 @@
                   </div>
                   <div class="card-body">
 
-                      <table class="table table-responsive table-striped table-hover">
+                      <table id="_search" class="table table-responsive table-striped table-hover">
                         <thead>
                             <tr >
                               <td><b>Employee ID</b></td>
                               <td><b>Employee Name</b></td>
                               <td><b>Designation</b></td>
-                              <td><b>Salaray</b></td>
+                              <td><b>Salary</b></td>
                               <td><b>Bonus</b></td>
                               <td><b>Status</b></td>
                               <td><b>Joining Date</b></td>
-                              <td><b>Departing Date</b></td>
+                              <td><b>Resign Date</b></td>
 
                               <td colspan="2">Action</td>
                             </tr>
@@ -47,7 +47,7 @@
                                 <td>{{$ej->emp_id}}</td>
                                 <td>{{$ej->emp_infos->emp_lname}}</td>
                                 <td>{{$ej->emp_pos->name}}</td>
-                                <td>{{$ej->salaray}}</td>
+                                <td>{{$ej->salary}}</td>
                                 <td>{{$ej->bonus}}</td>
                                 <td>{{$ej->status}}</td>
                                 <td>{{$ej->signing_date}}</td>

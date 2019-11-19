@@ -13,18 +13,18 @@
     <br />
   @endif
 
-  <div class="container">
+  <div class="container-fluid">
       <div class="row justify-content-center">
-          <div class="col-md-lg">
-              <div class="card " >
+          <div class="col-md-12">
+              <div class="card" >
                   <div class="card-header"><b>{{ __('Employee Job Status') }}</b></div>
 
 
-                  <div class="card-body">
+                  <div class="card-body ">
 
-                      <table class="table table-responsive table-striped table-hover">
+                      <table id="_search" class="table table-responsive-xl table-striped table-hover ">
                         <thead>
-                            <tr  class ="text-white" bgcolor="black" textcolor="white">
+                            <tr class ="text-white" bgcolor="black" textcolor="white">
                               <td><b>Employee ID</b></td>
                               <td><b>Employee Name</b></td>
                               <td><b>Designation</b></td>
@@ -50,7 +50,7 @@
                                   <td class="bg-danger rounded">{{$ej->status}}</td>
                                 @endif
 
-                                <td><a onclick="update('{{$ej->id}}');"  class="btn btn-primary text-light" data-toggle="modal"data-target="#myModal">Update Status</a></td>
+                                <td><a onclick="update('{{$ej->id}}');"  class="btn btn-primary text-light" data-toggle="modal"data-target="#statusModal">Update Status</a></td>
 
                             </tr>
                             @endforeach
@@ -67,7 +67,7 @@
 <!-- - - - -  -  - - -  - - - -  - - Edit Status - -  - - - -  - - - - - - -->
 
   <!-- The Modal -->
-  <div class="modal fade" id="myModal">
+  <div class="modal fade" id="statusModal">
     <div class="modal-dialog">
       <div class="modal-content">
 
@@ -79,7 +79,7 @@
 
         <!-- Modal body -->
         <div class="modal-body">
-          <form method="POST" action="{{ route('Ejob_update' ) }}">
+          <form method="POST" action="{{ route('status_update' ) }}">
             @csrf
             @method('PATCH')
 
@@ -93,7 +93,7 @@
                 <select class="form-control" name="status">
                     <option>Active</option>
                     <option>On Leave</option>
-                    <option>Departed</option>
+                    
                 </select>
               </div>
           </div>

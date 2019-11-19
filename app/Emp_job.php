@@ -10,7 +10,7 @@ class Emp_job extends Model
       'id',
       'emp_id',
       'position_id',
-      'salaray',
+      'salary',
       'bonus',
       'status',
       'signing_date',

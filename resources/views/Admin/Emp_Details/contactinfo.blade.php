@@ -1,6 +1,18 @@
 @extends('Dashboard.admin_dashboard')
 
 @section('content')
+<style >
+input[type=text] {
+width: 130px;
+-webkit-transition: width 0.4s ease-in-out;
+transition: width 0.4s ease-in-out;
+}
+
+/* When the input field gets focus, change its width to 100% */
+input[type=text]:focus {
+width: 50%;
+}
+</style>
 
 <div class="uper">
   @if(session()->get('success'))
@@ -15,14 +27,13 @@
 
   <div class="container">
       <div class="row justify-content-center">
-          <div class="col-md-lg">
+          <div class="col-md-12">
               <div class="card ">
                   <div class="card-header"><b>{{ __('Employee Contact Information') }}</b></div>
 
-
                   <div class="card-body">
 
-                      <table class="table table-responsive table-striped table-hover">
+                      <table id="_search"class="table table-responsive-xl table-striped table-hover">
                         <thead >
                             <tr >
                               <td><b>ID</b></td>
@@ -60,6 +71,7 @@
             </div>
         </div>
 </div>
+
 
 
 

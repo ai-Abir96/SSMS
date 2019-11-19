@@ -17,11 +17,11 @@ class CreateEmpJobsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('emp_id')->unsigned();
             $table->bigInteger('position_id')->unsigned();
-            $table->string('salaray');
-            $table->string('bonus');
+            $table->integer('salary');
+            $table->integer('bonus');
             $table->string('status');
             $table->string('signing_date');
-            $table->string('departing_date');
+            $table->string('departing_date')->nullable();
             $table->timestamps();
 
             $table-> foreign('emp_id')->references('id')->on('emp_infos')->onCascade('delete');

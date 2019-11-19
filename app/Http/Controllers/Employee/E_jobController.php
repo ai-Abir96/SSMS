@@ -7,6 +7,7 @@ use App\Emp_job;
 use App\Emp_info;
 use App\Emp_position;
 use Illuminate\Http\Request;
+use DB;
 
 
 class E_jobController extends Controller
@@ -16,11 +17,11 @@ class E_jobController extends Controller
       return Validator::make($request, [
         'emp_id'=> ['required'],
         'position_id'=> ['required'],
-        'salaray'=> ['required','integer'],
+        'salary'=> ['required','integer'],
         'bonus'=> ['required','integer'],
         'status'=> ['required','max:30'],
         'signing_date'=> ['required','date_format:"m-d-Y"'],
-        'departing_date'=> ['required','date_format:"m-d-Y"'],
+        'departing_date'=> ['date_format:"m-d-Y"'],
       ]);
   }
 
@@ -57,7 +58,7 @@ class E_jobController extends Controller
       Emp_job::insert([
         'emp_id'=> $request -> emp_id,
         'position_id'=> $request -> position_id,
-        'salaray'=> $request -> salaray,
+        'salary'=> $request -> salary,
         'bonus'=> $request -> bonus,
         'status'=> $request -> status,
         'signing_date'=> $request -> signing_date,
@@ -72,17 +73,14 @@ class E_jobController extends Controller
 
     public function show(Emp_job $emp_job)
     {
-        //
+
     }
 
 
-    public function edit(Emp_job $emp_job)
-    {
-        //
-    }
 
 
-    public function update(Request $request)
+
+    public function statusupdate(Request $request)
     {
       Emp_job::find($request->id)->update([
         'status'=> $request -> status,
@@ -93,9 +91,42 @@ class E_jobController extends Controller
     }
 
 
+    public function salaryupdate(Request $request)
+    {
+       $pre = Emp_job::where('id',$request->id)->pluck('salary')->first();
+       $post =  $request->input('salary');
+       $result= $pre + $post;
+
+         Emp_job::find($request->id)->update([
+            'salary' => $result,
+          ]);
+
+        return redirect()->route('emp_jobinfo')
+                  ->with('success','Job Position updated successfully.');
+
+
+    }
+
+    public function resignupdate(Request $request)
+    {
+
+         Emp_job::find($request->id)->update([
+            'departing_date' => $request->departing_date,
+            'status'=> $request -> status,
+
+          ]);
+
+        return redirect()->route('emp_jobinfo')
+                  ->with('success','Job Position updated successfully.');
+
+
+    }
+
+
+
     public function destroy(Emp_job $emp_job)
     {
-        //
+
     }
 
 
@@ -112,6 +143,9 @@ class E_jobController extends Controller
         $ejob = Emp_job::orderByRaw("FIELD(status , 'Active', 'On Leave', 'Departed')")->get();
         return view('Admin.Emp_Details.jobstatus',compact('ejob'));
     }
+
+
+
 
 
 }

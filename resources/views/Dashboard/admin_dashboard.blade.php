@@ -8,12 +8,15 @@
 
   <title>Admin Dashboard</title>
 
+
   <!-- Custom fonts for this template-->
   <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
 
   <!-- Custom styles for this template-->
   <link href="{{ asset('dashboard/css/admin.css') }}" rel="stylesheet">
   <link href="{{ asset('css/form-snippet.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
+  
 
 
 
@@ -32,7 +35,7 @@
     <!-- Navbar Search -->
     <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
       <div class="input-group">
-        <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
+        <input id="search" type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
         <div class="input-group-append">
           <button class="btn btn-primary" type="button">
             <i class="fas fa-search"></i>
@@ -43,10 +46,9 @@
     <!-- Navbar Search end -->
 
 
+
     <!-- Navbar -->
-    <ul class="navbar-nav ml-auto ml-md-0">
-
-
+    <ul class="navbar-nav ">
       <li class="nav-item dropdown">
           <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
               {{ Auth::user()->name }} <span class="caret"></span>
@@ -64,7 +66,6 @@
               </form>
           </div>
       </li>
-
     </ul>
     <!-- Navbar end -->
   </nav>
@@ -158,6 +159,37 @@
   <!-- Custom scripts for all pages-->
   <script src="{{ asset('dashboard/js/admin.min.js') }}" defer></script>
   <script src="{{ asset('js/form_snippet.js') }}" defer></script>
+  <script src="{{ asset('js/searchbar.js') }}" defer></script>
+  <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}" ></script>
+  <script >
+
+  $(document).ready(function(){
+
+          $('#search').keyup(function(){
+            search_table($(this).val());
+          });
+          function search_table(value){
+            $('#_search tr').each(function(){
+              var found = 'false';
+              $(this).each(function(){
+                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                {
+                  found = 'true';
+                }
+              });
+              if(found == 'true')
+              {
+                $(this).show();
+              }
+              else
+              {
+                $(this).hide();
+              }
+            });
+        }
+      });
+
+  </script>
 
 </body>
 

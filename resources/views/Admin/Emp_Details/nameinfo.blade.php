@@ -15,13 +15,13 @@
 
   <div class="container">
       <div class="row justify-content-center">
-          <div class="col-md-lg">
+          <div class="col-md-12">
               <div class="card ">
                   <div class="card-header"><b>{{ __('Employee Personal Information') }}</b></div>
 
                   <div class="card-body">
 
-                        <table class="table table-responsive table-striped table-hover">
+                        <table id="_search" class="table table-responsive-xl table-striped table-hover">
                         <thead>
                             <tr >
                               <td><b>ID</b></td>

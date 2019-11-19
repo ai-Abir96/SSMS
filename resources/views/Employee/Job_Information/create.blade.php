@@ -31,7 +31,7 @@
                             <div class="col-md-6">
                               <select class="form-control" name="position_id">
                                 @foreach ($epsn as $ep)
-                                  <option value={{$ep->id}}>{{ $ep->name }}</option>
+                                  <option value="{{$ep->id}}">{{ $ep->name }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -42,7 +42,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Salary ') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="salaray" value="{{ old('salary') }}" required autocomplete="name" autofocus>
+                                <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="salary" value="{{ old('salary') }}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -92,19 +92,6 @@
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Departing Date') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="date" class="form-control @error('name') is-invalid @enderror" name="departing_date" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">

@@ -30,9 +30,7 @@ class Emp_info extends Model
 
 
   ];
-  protected $hidden = [
 
-  ];
 
   public function users()
   {

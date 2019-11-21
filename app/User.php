@@ -47,7 +47,7 @@ class User extends Authenticatable
     }
     public function emp_infos()
     {
-      return $this->belongsTo('App\Emp_info','emp_user_id');
+      return $this->hasOne('App\Emp_info','emp_user_id');
     }
 
 

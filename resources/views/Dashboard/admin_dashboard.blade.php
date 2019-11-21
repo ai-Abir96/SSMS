@@ -34,11 +34,13 @@
 
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                            <img src="{{ asset('Images/Employee_Image') }}/{{ Auth::user()->emp_infos->emp_image}}"
+                                  alt="{{ Auth::user()->emp_infos->emp_image }}" class="rounded-circle"
+                                  style="width:100px;height:100px"/>
 
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold"><big>
-                                    {{ Auth::user()-> }}
+                                    {{ Auth::user()->emp_infos->emp_fname}}
                                 </big></span>
                                 <span class="text-muted text-xs block">Admin<b class="caret"></b></span>
                             </a>
@@ -153,7 +155,7 @@
 
             <div class="footer">
 
-                <div >
+                <div>
                     <strong>Copyright</strong> sHaD0w_007 &copy; 2016-2019
                 </div>
             </div>

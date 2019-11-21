@@ -24,6 +24,16 @@ Route::group(['middleware'=>['auth']],function(){
 
   Route::group(['middleware'=>['_admin']],function(){
     Route::get('/admin_dashboard', 'DashboardController@admin_dashboard')->name('admin_dashboard');
+
+    /////////admin/////////
+    //employeeinfo//
+    Route::get('/employee/information/nameinfo', 'Employee\E_infoController@nameinfo')->name('emp_nameinfo');
+    Route::get('/employee/information/contactinfo', 'Employee\E_infoController@contactinfo')->name('emp_contactinfo');
+    Route::get('/employee/information/emergancyinfo', 'Employee\E_infoController@emergancyinfo')->name('emp_emergancyinfo');
+    Route::get('/employee/information/jobstatus', 'Employee\E_jobController@jobstatus')->name('jobstatus');
+    Route::get('/employee/information/jobinfo', 'Employee\E_jobController@jobinfo')->name('emp_jobinfo');
+
+    //////////////////////////////////////////
   });
 
 });
@@ -120,17 +130,3 @@ Route::PATCH('/supplier/information/update/{id}', 'SupplierController@update')->
 Route::PATCH('/supplier/information/delete/{id}', 'SupplierController@destroy')->name('sup_delete');
 
 //supplier end
-
-
-
-
-
-/////////admin/////////
-//employeeinfo//
-Route::get('/employee/information/nameinfo', 'Employee\E_infoController@nameinfo')->name('emp_nameinfo');
-Route::get('/employee/information/contactinfo', 'Employee\E_infoController@contactinfo')->name('emp_contactinfo');
-Route::get('/employee/information/emergancyinfo', 'Employee\E_infoController@emergancyinfo')->name('emp_emergancyinfo');
-Route::get('/employee/information/jobstatus', 'Employee\E_jobController@jobstatus')->name('jobstatus');
-Route::get('/employee/information/jobinfo', 'Employee\E_jobController@jobinfo')->name('emp_jobinfo');
-
-//////////////////////////////////////////

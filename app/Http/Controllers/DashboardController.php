@@ -6,12 +6,15 @@ namespace App\Http\Controllers;
 use App\Emp_info;
 
 use Illuminate\Http\Request;
+use Auth;
 
 class DashboardController extends Controller
 {
 
   public function admin_dashboard()
   {
+
+
       return view('Dashboard.admin_dashboard');
   }
 

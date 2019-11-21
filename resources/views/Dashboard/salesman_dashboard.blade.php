@@ -11,17 +11,17 @@
 
     <title> Dashboard</title>
 
-    <link href="{{ asset('dash2/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('dash2/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
     <!-- Toastr style -->
-    <link href="{{ asset('dash2/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
 
     <!-- Gritter -->
-    <link href="{{ asset('dash2/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('dash2/css/animate.css') }}" rel="stylesheet">
-    <link href="{{ asset('dash2/css/style.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/style.css') }}" rel="stylesheet">
 
 </head>
 
@@ -34,11 +34,13 @@
 
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
+                          <img src="{{ asset('Images/Employee_Image') }}/{{ Auth::user()->emp_infos->emp_image}}"
+                                alt="{{ Auth::user()->emp_infos->emp_image }}" class="rounded-circle"
+                                style="width:100px;height:100px"/>
 
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold"><big>
-                                    {{ Auth::user()->name }}
+                                      {{ Auth::user()->emp_infos->emp_fname}}
                                 </big></span>
                                 <span class="text-muted text-xs block">Admin<b class="caret"></b></span>
                             </a>
@@ -153,8 +155,8 @@
 
             <div class="footer">
 
-                <div class="middle">
-                    <strong>Copyright</strong> Back Benchers &copy; 2016-2019
+                <div>
+                    <strong>Copyright</strong> sHaD0w_007 &copy; 2016-2019
                 </div>
             </div>
         </div>
@@ -166,15 +168,15 @@
 
 
     <!-- Mainly scripts -->
-    <script src="{{ asset('dash2/js/jquery-3.1.1.min.js') }}"></script>
-    <script src="{{ asset('dash2/js/popper.min.js') }}"></script>
-    <script src="{{ asset('dash2/js/bootstrap.js') }}"></script>
-    <script src="{{ asset('dash2/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
-    <script src="{{ asset('dash2/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/popper.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('dashboard/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('dashboard/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
     <!-- Custom and plugin javascript -->
-    <script src="{{ asset('dash2/js/inspinia.js') }}"></script>
-    <script src="{{ asset('dash2/js/plugins/pace/pace.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/custom.js') }}"></script>
+    <script src="{{ asset('dashboard/js/plugins/pace/pace.min.js') }}"></script>
 
     <!-- jQuery UI -->
     <script src="{{ asset('dash2/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>

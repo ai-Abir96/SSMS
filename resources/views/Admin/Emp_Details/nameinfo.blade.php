@@ -25,6 +25,7 @@
                         <thead>
                             <tr >
                               <td><b>ID</b></td>
+                              
                               <td><b>Image</b></td>
                               <td><b>First Name</b></td>
                               <td><b>Last Name</b></td>
@@ -38,6 +39,7 @@
                             @foreach($einfo as $enfo)
                             <tr>
                                 <td>{{$enfo->id}}</td>
+
                                 <td><img src="{{ asset('Images/Employee_Image') }}/{{ $enfo->emp_image }}" class="rounded" alt="{{ $enfo->emp_image }}" style="width:50px;height:50px";></td>
                                 <td>{{$enfo->emp_fname}}</td>
                                 <td>{{$enfo->emp_lname}}</td>

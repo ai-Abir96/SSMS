@@ -37,9 +37,6 @@ Route::group(['middleware'=>['auth']],function(){
 });
 
 
-
-
-
 // Route::get('/admin_dashboard', 'DashboardController@admin_dashboard')->name('admin_dashboard');
 // Route::get('/salesman_dashboard', 'DashboardController@salesman_dashboard')->name('salesman_dashboard');
 Route::get('/denied', 'DashboardController@denied')->name('denied');
@@ -111,7 +108,18 @@ Route::PATCH('/employee/job/information/delete/{id}', 'Employee\E_jobController@
 
 
 
+//Supplier
+Route::get('/supplier/information/index', 'SupplierController@index')->name('sup_index');
 
+Route::get('/supplier/information/create', 'SupplierController@create')->name('sup_create_page');
+Route::post('/supplier/information/create/created', 'SupplierController@store')->name('sup_create');
+
+Route::get('/supplier/information/{id}/update', 'SupplierController@edit')->name('sup_update_page');
+Route::PATCH('/supplier/information/update/{id}', 'SupplierController@update')->name('sup_update');
+
+Route::PATCH('/supplier/information/delete/{id}', 'SupplierController@destroy')->name('sup_delete');
+
+//supplier end
 
 
 

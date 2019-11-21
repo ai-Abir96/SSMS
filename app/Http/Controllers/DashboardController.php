@@ -12,7 +12,6 @@ class DashboardController extends Controller
 
   public function admin_dashboard()
   {
-
       return view('Dashboard.admin_dashboard');
   }
 
@@ -21,6 +20,9 @@ class DashboardController extends Controller
   {
       return view('Dashboard.salesman_dashboard');
   }
+
+
+
 
   public function denied()
   {

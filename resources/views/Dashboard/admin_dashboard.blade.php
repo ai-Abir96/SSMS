@@ -1,195 +1,212 @@
+
+
 <!DOCTYPE html>
-<html lang="en">
-<meta http-equiv="content-type" content="text/html;charset=utf-8" />
+<html>
+
 <head>
 
-  <meta charset="utf-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
+    <title> Dashboard</title>
 
-  <title>Admin Dashboard</title>
+    <link href="{{ asset('dashboard/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
 
+    <!-- Toastr style -->
+    <link href="{{ asset('dashboard/css/plugins/toastr/toastr.min.css') }}" rel="stylesheet">
 
-  <!-- Custom fonts for this template-->
-  <link href="{{ asset('dashboard/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
+    <!-- Gritter -->
+    <link href="{{ asset('dashboard/js/plugins/gritter/jquery.gritter.css') }}" rel="stylesheet">
 
-  <!-- Custom styles for this template-->
-  <link href="{{ asset('dashboard/css/admin.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/form-snippet.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/searchbar.css') }}" rel="stylesheet">
-  
-
-
+    <link href="{{ asset('dashboard/css/animate.css') }}" rel="stylesheet">
+    <link href="{{ asset('dashboard/css/style.css') }}" rel="stylesheet">
 
 </head>
 
-<body id="page-top">
+<body>
+    <div id="wrapper">
+        <nav class="navbar-default navbar-static-side" role="navigation">
+            <div class="sidebar-collapse">
+                <ul class="nav metismenu" id="side-menu">
 
-  <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-    <a class="navbar-brand mr-1" href="">Admin</a>
+                    <li class="nav-header">
+                        <div class="dropdown profile-element">
+                            <img alt="image" class="rounded-circle" src="img/profile_small.jpg"/>
 
-    <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
-      <i class="fas fa-bars"></i>
-    </button>
+                            <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                                <span class="block m-t-xs font-bold"><big>
+                                    {{ Auth::user()-> }}
+                                </big></span>
+                                <span class="text-muted text-xs block">Admin<b class="caret"></b></span>
+                            </a>
+                            <ul class="dropdown-menu animated fadeInRight m-t-xs">
+                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                            </ul>
+                        </div>
+                        <div class="logo-element">
+                            Admin
+                        </div>
+                    </li>
 
-    <!-- Navbar Search -->
-    <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-      <div class="input-group">
-        <input id="search" type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-        <div class="input-group-append">
-          <button class="btn btn-primary" type="button">
-            <i class="fas fa-search"></i>
-          </button>
+
+                    <li >
+                        <a href=""><i class="fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
+                    </li>
+
+
+                    <!-- User -->
+                    <li>
+                        <a href="{{ route('user_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">User</span></a>
+                    </li>
+                    <!-- User end -->
+                    <!-- Employee -->
+                    <li>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Employee</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('emp_nameinfo') }}"> Personal Information </a></li>
+                            <li><a href="{{ route('emp_contactinfo') }}"> Contact Information </a></li>
+                            <li><a href="{{ route('emp_emergancyinfo') }}"> Emergacy Information </a></li>
+                            <li><a href="{{ route('emp_jobinfo') }}"> Job Information </a></li>
+                            <li><a href="{{ route('jobstatus') }}"> Status Information </a></li>
+                            <li><a href="{{ route('Ejob_index') }}"> Salary Information </a></li>
+                        </ul>
+                    </li>
+                    <!-- employee end -->
+
+                    <!-- Supplier -->
+                    <li>
+                        <a href="{{ route('sup_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Supplier</span>  </a>
+                    </li>
+                    <!-- Supplier end -->
+
+                    <!-- Others -->
+                    <li>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Others</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('Eposition_index') }}"> Job Position </a></li>
+                            <li><a href="{{ route('role_index') }}"> User Roles </a></li>
+                        </ul>
+                    </li>
+                    <!-- Others end -->
+
+                    <!-- Product -->
+                    <!-- Product end -->
+                    <!-- Categories -->
+                    <!-- Categories end -->
+                    <!-- Supplier -->
+                    <!-- Supplier end -->
+                    <!-- Supplier -->
+                    <!-- Supplier end -->
+
+
+
+
+                </ul>
+
+            </div>
+        </nav>
+
+
+        <div id="page-wrapper" class="gray-bg dashbard-1">
+        <div class="row border-bottom">
+        <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <div class="navbar-header">
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <form role="search" class="navbar-form-custom" action="">
+                <div class="form-group">
+                    <input id="search" type="text" placeholder="Search for..." class="form-control" name="top-search" id="top-search">
+                </div>
+            </form>
         </div>
-      </div>
-    </form>
-    <!-- Navbar Search end -->
 
 
 
-    <!-- Navbar -->
-    <ul class="navbar-nav ">
-      <li class="nav-item dropdown">
-          <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-              {{ Auth::user()->name }} <span class="caret"></span>
-          </a>
+            <ul class="nav navbar-top-links navbar-right">
+                <li style="padding: 20px">
+                    <span class="m-r-sm text-muted welcome-message">Welcome  Admin.</span>
+                </li>
 
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="{{ route('logout') }}"
-                 onclick="event.preventDefault();
-                               document.getElementById('logout-form').submit();">
-                  {{ __('Logout') }}
-              </a>
+                <li>
+                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                        <i class="fa fa-sign-out"></i> Logout
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
+                </li>
 
-              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-              </form>
-          </div>
-      </li>
-    </ul>
-    <!-- Navbar end -->
-  </nav>
+            </ul>
 
-  <div id="wrapper">
-
-    <!-- Sidebar -->
-    <ul class="sidebar navbar-nav">
-      <!-- roles -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('role_index') }}"><i class="fas fa-fw fa-folder"></i><span>User Roles</span></a>
-      </li>
-      <!-- roles end -->
-      <!-- Users -->
-      <li class="nav-item">
-        <a class="nav-link" href="{{ route('user_index') }}"><i class="fas fa-fw fa-folder"></i><span>User</span></a>
-      </li>
-      <!-- Users end -->
-
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Employee</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-          <a class="dropdown-item" href="{{ route('emp_nameinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Personal Information</span></a>
-          <a class="dropdown-item" href="{{ route('emp_contactinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Contact Information</span></a>
-          <a class="dropdown-item" href="{{ route('emp_emergancyinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Emergacy Information</span></a>
-          <a class="dropdown-item" href="{{ route('emp_jobinfo') }}"><i class="fas fa-fw fa-folder"></i><span>Job Information</span></a>
-          <a class="dropdown-item" href="{{ route('jobstatus') }}"><i class="fas fa-fw fa-folder"></i><span>Status Information</span></a>
-          <a class="dropdown-item" href="{{ route('Ejob_index') }}"><i class="fas fa-fw fa-folder"></i><span>Salary Information</span></a>
+        </nav>
         </div>
-      </li>
 
 
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Others</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+            <div class="wrapper wrapper-content">
+              <div class="container">
+                  @yield('content')
+              </div>
 
-          <a class="dropdown-item" href="{{ route('Eposition_index') }}"><i class="fas fa-fw fa-folder"></i><span>Job Position</span></a>
+
+            <div class="footer">
+
+                <div >
+                    <strong>Copyright</strong> sHaD0w_007 &copy; 2016-2019
+                </div>
+            </div>
         </div>
-      </li>
 
-
-
-      <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-fw fa-folder"></i><span>Product</span></a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link" href=""><i class="fas fa-fw fa-folder"></i><span>Categories</span></a>
-      </li>
-    </ul>
-<!-- Sidebar end -->
-
-
-
-  <div id="content-wrapper">
-
-
-      <div class="container-fluid">
-        <div class="container">
-            @yield('content')
-        </div>
-      <!--  Footer -->
-      <footer class="sticky-footer">
-        <div class="container my-auto">
-          <div class="copyright text-center my-auto">
-            <span>Copyright BB ©  2019</span>
-          </div>
-        </div>
-      </footer>
-      <!--  Footer end-->
 
     </div>
-    <!-- /.content-wrapper -->
-
   </div>
 
 
-  <!-- Bootstrap core JavaScript-->
-  <script src="{{ asset('dashboard/vendor/jquery/jquery.min.js') }}" defer></script>
-  <script src="{{ asset('dashboard/vendor/bootstrap/js/bootstrap.bundle.min.js') }}" defer></script>
 
-  <!-- Core plugin JavaScript-->
-  <script src="{{ asset('dashboard/vendor/jquery-easing/jquery.easing.min.js') }}" defer></script>
+    <!-- Mainly scripts -->
+    <script src="{{ asset('dashboard/js/jquery-3.1.1.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/popper.min.js') }}"></script>
+    <script src="{{ asset('dashboard/js/bootstrap.js') }}"></script>
+    <script src="{{ asset('dashboard/js/plugins/metisMenu/jquery.metisMenu.js') }}"></script>
+    <script src="{{ asset('dashboard/js/plugins/slimscroll/jquery.slimscroll.min.js') }}"></script>
 
-  <!-- Custom scripts for all pages-->
-  <script src="{{ asset('dashboard/js/admin.min.js') }}" defer></script>
-  <script src="{{ asset('js/form_snippet.js') }}" defer></script>
-  <script src="{{ asset('js/searchbar.js') }}" defer></script>
-  <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}" ></script>
-  <script >
+    <!-- Custom and plugin javascript -->
+    <script src="{{ asset('dashboard/js/custom.js') }}"></script>
+    <script src="{{ asset('dashboard/js/plugins/pace/pace.min.js') }}"></script>
 
-  $(document).ready(function(){
+    <!-- jQuery UI -->
+    <script src="{{ asset('dash2/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script >
 
-          $('#search').keyup(function(){
-            search_table($(this).val());
-          });
-          function search_table(value){
-            $('#_search tr').each(function(){
-              var found = 'false';
-              $(this).each(function(){
-                if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+    $(document).ready(function(){
+
+            $('#search').keyup(function(){
+              search_table($(this).val());
+            });
+            function search_table(value){
+              $('#_search tr').each(function(){
+                var found = 'false';
+                $(this).each(function(){
+                  if($(this).text().toLowerCase().indexOf(value.toLowerCase()) >= 0)
+                  {
+                    found = 'true';
+                  }
+                });
+                if(found == 'true')
                 {
-                  found = 'true';
+                  $(this).show();
+                }
+                else
+                {
+                  $(this).hide();
                 }
               });
-              if(found == 'true')
-              {
-                $(this).show();
-              }
-              else
-              {
-                $(this).hide();
-              }
-            });
-        }
-      });
+          }
+        });
 
-  </script>
+    </script>
 
 </body>
 

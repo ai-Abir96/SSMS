@@ -94,12 +94,16 @@
                     </li>
                     <!-- Others end -->
 
-                    <!-- Product -->
-                    <!-- Product end -->
-                    <!-- Categories -->
-                    <!-- Categories end -->
-                    <!-- Supplier -->
-                    <!-- Supplier end -->
+                    <!-- Product Categories-->
+                    <li>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Product Categories</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('cat_index') }}"> Category </a></li>
+                            <li><a href="{{ route('scat_index') }}"> Sub Category </a></li>
+                        </ul>
+                    </li>
+                    <!-- Product categories end -->
+
                     <!-- Supplier -->
                     <!-- Supplier end -->
 

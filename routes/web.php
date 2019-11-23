@@ -130,3 +130,19 @@ Route::PATCH('/supplier/information/update/{id}', 'SupplierController@update')->
 Route::PATCH('/supplier/information/delete/{id}', 'SupplierController@destroy')->name('sup_delete');
 
 //supplier end
+
+
+//Category
+Route::get('/category/index', 'Product_category\CategoryController@index')->name('cat_index');
+Route::post('/category/create/created', 'Product_category\CategoryController@store')->name('cat_create');
+Route::PATCH('/category/update', 'Product_category\CategoryController@update')->name('cat_update');
+Route::PATCH('/category/delete', 'Product_category\CategoryController@destroy')->name('cat_delete');
+
+//Category end
+//Sub category
+Route::get('/subcategory/index', 'Product_category\SubcategoryController@index')->name('scat_index');
+Route::post('/subcategory/create/created', 'Product_category\SubcategoryController@store')->name('scat_create');
+Route::PATCH('/subcategory/update', 'Product_category\SubcategoryController@update')->name('scat_update');
+Route::PATCH('/subcategory/delete', 'Product_category\SubcategoryController@destroy')->name('scat_delete');
+
+//Sub category end

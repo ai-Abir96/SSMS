@@ -109,12 +109,7 @@ class SupplierController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Supplier  $supplier
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
       Supplier::where('id',$id)->delete();

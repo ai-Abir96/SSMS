@@ -48,13 +48,6 @@
                                 <td><a onclick="delete_cat('{{$category->id}}');"class="btn btn-danger" data-toggle="modal"data-target="#cat_deleteModal">Delete</a></td>
 
 
-                                <!-- <td>
-                                    <form action="{{ route('cat_delete', $category ?? ''->id)}}" method="post">
-                                      @csrf
-                                      @method('DELETE')
-                                      <button class="btn btn-danger" type="submit">Delete</button>
-                                    </form>
-                                </td> -->
                             </tr>
                             @endforeach
                         </tbody>

@@ -24,7 +24,7 @@ class SubcategoryController extends Controller
     {
 
       $scategories = Sub_Category::all();
-      return view('Admin.Product_Category.Sub_Category.index',compact('scategories'));
+      return view('Admin.Category.Sub_Category.index',compact('scategories'));
     }
 
 

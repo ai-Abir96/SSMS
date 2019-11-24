@@ -10,4 +10,8 @@ class Sub_category extends Model
         'sct_name',
         'sct_description',
     ];
+    public function sub_stocks()
+    {
+      return $this->belongsTo('App\Stock','fscat_id');
+    }
 }

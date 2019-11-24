@@ -10,4 +10,9 @@ class Category extends Model
         'ct_name',
         'ct_description',
     ];
+
+    public function cat_stocks()
+    {
+      return $this->belongsTo('App\Stock','fcat_id');
+    }
 }

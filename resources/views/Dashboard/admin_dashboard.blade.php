@@ -104,8 +104,17 @@
                     </li>
                     <!-- Product categories end -->
 
-                    <!-- Supplier -->
-                    <!-- Supplier end -->
+                    <!-- Products -->
+                    <li>
+                        <a href=""><i class="fa fa-folder"></i> <span class="nav-label">Product Details</span>  </a>
+                    </li>
+                    <!-- Products end -->
+
+                    <!-- Stock -->
+                    <li>
+                        <a href="{{ route('stock_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Stock Details</span>  </a>
+                    </li>
+                    <!-- Stock end -->
 
 
 

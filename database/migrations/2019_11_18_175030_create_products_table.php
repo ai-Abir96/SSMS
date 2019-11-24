@@ -15,17 +15,15 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('p_code')->nullable();
+            $table->string('fp_code')->nullable()->unique();
             $table->string('p_name')->nullable();
-            $table->bigInteger('fcat_id')->nullable()->unsigned();
-            $table->bigInteger('fscat_id')->nullable()->unsigned();
+            $table->string('p_image')->nullable();
             $table->string('p_price')->nullable();
             $table->string('p_vat')->nullable();
             $table->string('p_discount')->nullable();
             $table->timestamps();
 
-            $table->foreign('fcat_id')->references('id')->on('categories')->onCascade('delete');
-            $table->foreign('fscat_id')->references('id')->on('sub_categories')->onCascade('delete');
+            $table->foreign('fp_code')->references('p_code')->on('stocks')->onCascade('delete');
         });
     }
 

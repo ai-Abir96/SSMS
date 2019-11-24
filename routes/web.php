@@ -146,3 +146,16 @@ Route::PATCH('/subcategory/update', 'Product_category\SubcategoryController@upda
 Route::PATCH('/subcategory/delete', 'Product_category\SubcategoryController@destroy')->name('scat_delete');
 
 //Sub category end
+
+//Stock
+Route::get('/stocks/index', 'Product_category\StockController@index')->name('stock_index');
+
+Route::get('/stocks/create', 'Product_category\StockController@create')->name('stock_create_page');
+Route::post('/stocks/create/created', 'Product_category\StockController@store')->name('stock_create');
+
+Route::get('/stocks/{id}/update', 'Product_category\StockController@edit')->name('stock_update_page');
+Route::PATCH('/stocks/update/{id}', 'Product_category\StockController@update')->name('stock_update');
+
+Route::PATCH('/stocks/delete/{id}', 'Product_category\StockController@destroy')->name('stock_delete');
+
+//Stock end

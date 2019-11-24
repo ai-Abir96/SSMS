@@ -15,15 +15,17 @@ class CreateStocksTable extends Migration
     {
         Schema::create('stocks', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('fp_code')->nullable();
+            $table->string('p_code')->nullable()->unique();
+            $table->string('p_name')->nullable();
             $table->bigInteger('fcat_id')->unsigned();
             $table->bigInteger('fscat_id')->unsigned();
-            $table->string('fsup_id')->nullable();
+            $table->bigInteger('fsup_id')->nullable()->unsigned();
             $table->string('quantity')->nullable();
+            $table->integer('st_price')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
 
-
+            $table->foreign('fsup_id')->references('id')->on('suppliers')->onCascade('delete');
             $table->foreign('fcat_id')->references('id')->on('categories')->onCascade('delete');
             $table->foreign('fscat_id')->references('id')->on('sub_categories')->onCascade('delete');
 

@@ -159,3 +159,19 @@ Route::PATCH('/stocks/update/{id}', 'Product_category\StockController@update')->
 Route::PATCH('/stocks/delete/{id}', 'Product_category\StockController@destroy')->name('stock_delete');
 
 //Stock end
+
+
+//Product
+Route::get('/products/index', 'Product_category\ProductController@index')->name('product_index');
+
+Route::get('/products/create', 'Product_category\ProductController@create')->name('product_create_page');
+Route::post('/products/create/created', 'Product_category\ProductController@store')->name('product_create');
+
+Route::get('/products/{id}/update', 'Product_category\ProductController@edit')->name('product_update_page');
+Route::PATCH('/products/update/{id}', 'Product_category\ProductController@update')->name('product_update');
+
+Route::PATCH('/products/delete/{id}', 'Product_category\ProductController@destroy')->name('product_delete');
+
+//Product end
+Route::get('/pos/index', 'PosController@index')->name('pos_index');
+Route::get('/pos/index2', 'PosController@index2')->name('pos_index2');

@@ -20,7 +20,7 @@
                   <div class="card-header">{{ __('Stock Details') }}</div>
 
                   <div class="col-md-4 offset-md-0">
-                      <a href="{{ route('stock_create_page')}}"  class="btn btn-primary">
+                      <a href="{{ route('product_create_page')}}"  class="btn btn-primary">
                           {{ __('Create New') }}
                       </a>
                   </div>
@@ -31,31 +31,26 @@
                             <tr>
                               <td>Product Code</td>
                               <td>Product Name</td>
-                              <td>Category</td>
-                              <td>Sub Category</td>
-                              <td>Supplier Name</td>
-                              <td>Quantity</td>
-                              <td>Stock Price</td>
-                              <td>Description</td>
+                              <td>Product Image</td>
+                              <td>Price[৳]</td>
+                              <td>Vat [%]</td>
+                              <td>Discount[%]</td>
                               <td colspan="2">Action</td>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($stocks as $stock)
+                            @foreach($products as $product)
                             <tr>
-                                <td>{{$stock->p_code}}</td>
-                                <td>{{$stock->p_name}}</td>
-                                <td>{{$stock->categories-> ct_name}}</td>
-                                <td>{{$stock->subcategories-> sct_name}}</td>
-                                <td>{{$stock->suppliers-> s_id}}</td>
-                                <td>{{$stock->quantity}}</td>
-                                <td>{{$stock->st_price}}</td>
-                                <td>{{$stock->description}}</td>
+                                <td>{{$product->stocks->p_code}}</td>
+                                <td>{{$product->stocks->p_name}}</td>
+                                <td><img src="{{ asset('Images/Product_Image') }}/{{ $product->p_image }}" class="rounded" alt="{{ $product->p_image }}" style="width:50px;height:50px";></td>
+                                <td>{{$product->p_price}}</td>
+                                <td>{{$product->p_vat}}</td>
+                                <td>{{$product->p_discount}}</td>
 
-
-                                <td><a href="{{ route('stock_update_page', $stock->id)}}" class="btn btn-primary">Edit</a></td>
+                                <td><a href="{{ route('product_update_page', $product->id)}}" class="btn btn-primary">Edit</a></td>
                                 <td>
-                                    <form action="{{ route('stock_delete', $stock->id)}}" method="post">
+                                    <form action="{{ route('product_delete', $product->id)}}" method="post">
                                       @csrf
                                       @method('PATCH')
                                       <button class="btn btn-danger" type="submit">Delete</button>

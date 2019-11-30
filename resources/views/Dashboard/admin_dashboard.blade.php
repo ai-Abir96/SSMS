@@ -55,7 +55,7 @@
 
 
                     <li >
-                        <a href=""><i class="fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
+                        <a href="{{ route('pos_index') }}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
                     </li>
 
 
@@ -106,7 +106,7 @@
 
                     <!-- Products -->
                     <li>
-                        <a href=""><i class="fa fa-folder"></i> <span class="nav-label">Product Details</span>  </a>
+                        <a href="{{ route('product_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Product Details</span>  </a>
                     </li>
                     <!-- Products end -->
 
@@ -129,7 +129,7 @@
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-fabar " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="">
                 <div class="form-group">
                     <input id="search" type="text" placeholder="Search for..." class="form-control" name="top-search" id="top-search">
@@ -191,6 +191,7 @@
     <script src="{{ asset('dashboard/js/custom.js') }}"></script>
     <script src="{{ asset('dashboard/js/plugins/pace/pace.min.js') }}"></script>
 
+    <script src="{{ asset('js/bootstrap-input-spinner.js') }}"></script>
     <!-- jQuery UI -->
     <script src="{{ asset('dash2/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script >

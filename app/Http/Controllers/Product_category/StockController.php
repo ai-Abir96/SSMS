@@ -71,20 +71,39 @@ class StockController extends Controller
     }
 
 
-    public function edit(Stock $stock)
+    public function edit($id)
     {
-        //
+      $stocks = Stock::findOrFail($id);
+      $categories = Category::all();
+      $subcategories = Sub_category::all();
+      $suppliers = Supplier::all();
+
+       return view('Admin.Stock.update', compact('stocks','categories','subcategories','suppliers'));
     }
 
 
-    public function update(Request $request, Stock $stock)
+    public function update(Request $request)
     {
-        //
+      Stock::find($request->id)->update([
+        'p_code'=> $request-> p_code,
+        'p_name'=> $request-> p_name,
+        'fcat_id'=> $request-> fcat_id,
+        'fscat_id'=> $request-> fscat_id,
+        'fsup_id'=> $request-> fsup_id,
+        'quantity'=> $request-> quantity,
+        'st_price'=> $request-> st_price,
+        'description'=> $request-> description
+      ]);
+
+        return redirect()->route('stock_index')
+                  ->with('success','Stock updated successfully.');
     }
 
 
-    public function destroy(Stock $stock)
+    public function destroy($id)
     {
-        //
+        Stock::where('id',$id)->delete();
+        return redirect()->route('stock_index')
+                  ->with('success','Stock updated successfully.');
     }
 }

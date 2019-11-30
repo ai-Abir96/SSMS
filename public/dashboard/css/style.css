@@ -873,7 +873,7 @@ h5 {
 }
 .navbar-default .nav > li > a:hover,
 .navbar-default .nav > li > a:focus {
-  background-color: #293846;
+  background-color: #003366;
   color: white;
 }
 .nav .open > a,
@@ -892,8 +892,8 @@ h5 {
   border: 0;
 }
 .navbar-default {
-  background-color: transparent;
-  border-color: #2f4050;
+  background-color: black;
+  border-color: white;
 }
 .navbar-top-links li {
   display: inline-block;
@@ -997,7 +997,7 @@ h5 {
 }
 .nav-header {
   padding: 33px 25px;
-  background-color: #2f4050;
+  background-color: black;
   background-image: url("patterns/header-profile.png");
 }
 .caret {
@@ -1017,10 +1017,10 @@ h5 {
   transition: all 0.4s;
 }
 ul.nav-second-level {
-  background: #293846;
+  background: #1a1a1a;
 }
 .nav > li.active {
-  border-left: 4px solid #19aa8d;
+  border-left: 4px solid ;
   background: #293846;
 }
 .nav.nav-second-level > li.active {
@@ -1292,7 +1292,7 @@ body.canvas-menu .logo-element {
 }
 body.mini-navbar .nav-header {
   padding: 0;
-  background-color: #1ab394;
+  background-color: black;
 }
 body.canvas-menu .nav-header {
   padding: 33px 25px;
@@ -1574,6 +1574,13 @@ button:focus {
   border-color: #18a689;
   color: #FFFFFF;
 }
+.btn-fabar:hover,
+.btn-fabar:focus,
+.btn-fabar.focus {
+  background-color: black;
+  border-color: #18a689;
+  color: #FFFFFF;
+}
 .btn-primary.disabled,
 .btn-primary:disabled {
   color: #fff;
@@ -1610,6 +1617,12 @@ button:focus {
   color: #fff;
   background-color: #1a7bb9;
   border-color: #1a7bb9;
+}
+
+.dlt{
+  background-color: red;
+  color: white;
+  padding:2px;
 }
 .btn-success:not(:disabled):not(.disabled):active,
 .btn-success:not(:disabled):not(.disabled).active,
@@ -3949,6 +3962,11 @@ a.forum-item-title:hover {
 .jvectormap-zoomout {
   width: 10px;
   height: 10px;
+}
+
+.scroll-card {
+    max-height: 450px;
+    overflow-y: auto;
 }
 .jvectormap-zoomin {
   top: 10px;

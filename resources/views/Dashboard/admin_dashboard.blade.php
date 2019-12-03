@@ -55,13 +55,13 @@
 
 
                     <li >
-                        <a href="{{ route('pos_index') }}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
+                        <a href="{{ route('pos_index') }}"><i class=" fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
                     </li>
 
 
                     <!-- User -->
                     <li>
-                        <a href="{{ route('user_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">User</span></a>
+                        <a  href="{{ route('user_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">User</span></a>
                     </li>
                     <!-- User end -->
                     <!-- Employee -->

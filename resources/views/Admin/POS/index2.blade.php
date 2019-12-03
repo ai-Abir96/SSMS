@@ -1,261 +1,239 @@
 @extends('Dashboard.admin_dashboard')
 
-@section('head')
-    <link href="{{asset('/inpos/css/jquery-ui.minb.css')}}" rel="stylesheet">
-    <link href="{{asset('/inpos/plugins/bootstrap-select/css/bootstrap-select.css')}}" rel="stylesheet" />
-    <link href="{{asset('/inpos/plugins/jquery-spinner/css/bootstrap-spinner.css')}}" rel="stylesheet">
-    <style>
-        .lds-ellipsis {
-            display: inline-block;
-            position: relative;
-            width: 64px;
-            height: 11px;
-        }
-        .lds-ellipsis div {
-            position: absolute;
-            top: 0px;
-            width: 11px;
-            height: 11px;
-            border-radius: 50%;
-            background: #009688;
-            animation-timing-function: cubic-bezier(0, 1, 1, 0);
-        }
-        .lds-ellipsis div:nth-child(1) {
-            left: 6px;
-            animation: lds-ellipsis1 0.6s infinite;
-        }
-        .lds-ellipsis div:nth-child(2) {
-            left: 6px;
-            animation: lds-ellipsis2 0.6s infinite;
-        }
-        .lds-ellipsis div:nth-child(3) {
-            left: 26px;
-            animation: lds-ellipsis2 0.6s infinite;
-        }
-        .lds-ellipsis div:nth-child(4) {
-            left: 45px;
-            animation: lds-ellipsis3 0.6s infinite;
-        }
-        @keyframes lds-ellipsis1 {
-            0% {
-                transform: scale(0);
-            }
-            100% {
-                transform: scale(1);
-            }
-        }
-        @keyframes lds-ellipsis3 {
-            0% {
-                transform: scale(1);
-            }
-            100% {
-                transform: scale(0);
-            }
-        }
-        @keyframes lds-ellipsis2 {
-            0% {
-                transform: translate(0, 0);
-            }
-            100% {
-                transform: translate(19px, 0);
-            }
-        }
-    </style>
-    @endsection
+@section('content')
+
+<style>
+.hidden{
+  display : none;
+}
+
+.show{
+  display : block !important;
+}
+select.form-control.product_id {
+    width: 150px;
+}
+</style>
+<div class="container">
+
+	<div class="row">
+		<div class="col-md-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">New Order</div>
+
+				<div class="panel-body">
+					<form class="form-horizontal" id="yoyo" role="form" method="POST" action="">
+                        {!! csrf_field() !!}
+                        <table class="table table-striped">
+							<tr>
+								<td>
+									Customer Name: <input type="text" class="form-control" name="name" value="{{ old('name') }}">
+								</td>
+								<td>
+									Location: <input type="text" class="form-control" name="location" value="{{ old('location') }}">
+								</td>
+							</tr>
+						</table>
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+                  <th>ID</th>
+									<th>Product ID</th>
+									<th>Product Name</th>
+									<th>Price</th>
+                  <th>Available</th>
+                  <th>Discount</th>
+									<th>Quantity</th>
+									<th>Sub-Total</th>
+									<th>Delete</th>
+
+								</tr>
+							</thead>
+							<tbody class="neworderbody">
+								<tr>
+									<td class="no">1</td>
+									<td>
+										<select class="form-control product_id" name="product_id[]">
+											@foreach($products as $product)
+											<option data-price="{{ $product->p_price}}"
+                              data-name="{{ $product-> stocks-> p_name}}"
+                              data-discount="{{$product-> p_discount}}"
+                              data-available="{{$product-> stocks->quantity}}"
+                              value="{{ $product->stocks->p_code }}">{{$product->stocks->p_code}}</option>
+											@endforeach
+										</select>
+									</td>
+
+                  <td>
+										<input type="text" class="name form-control" name="name[]">
+                  </td>
+
+                  <td>
+                    <input type="text" class="price form-control" name="price[]">
+                  </td>
+
+                  <td>
+                    <input type="text" class="available form-control" name="available[]">
+                  </td>
+
+                  <td>
+                    <input type="text" class="discount form-control" name="discount[]">
+                  </td>
+
+                  <td>
+										<input type="text" class="qty form-control" name="qty[]">
+                  </td>
 
 
-    @section('footer')
-        <!-- <div class="modal fade" id="smallModal" tabindex="-1" role="dialog">
-            <div class="modal-dialog modal-sm" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <div class="row clearfix">
-                            <div class="col-sm-12">
-                                <form action="" method="post">
-                                @csrf
-                                <div class="form-group">
-                                    <label for="amount_payable">Amount Payable</label>
-                                    <div class="form-line">
-                                        <input type="text" id="amount_payable" class="form-control" disabled>
-                                        <input type="hidden" name="amount_payable" id="total_payable">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="paid_by">Paid By</label>
-                                    <select class="form-control show-tick" name="account_id">
+									<td>
+										<input type="text" class="amount form-control" name="amount[]">
+									</td>
+									<td>
+										<input type="button" class="btn btn-danger delete" value="x">
+									</td>
 
-                                            <option value=""></option>
 
-                                    </select>
+								</tr>
 
-                                </div>
-                                <div class="form-group">
-                                    <label for="amount_paid">Amount Paid</label>
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" placeholder="Amount Paid" id="amount_paid" name="amount_paid">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="note">Note</label>
-                                    <div class="form-line">
-                                        <textarea class="form-control" placeholder="Note.." id="note" name="note"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="customer">Customer <span><a href="" target="_blank" class="btn btn-primary">Add New Customer</a></span></label>
-                                    <div class="form-line">
-                                        <input type="text" class="form-control" placeholder="Customer Mobile No." id="customer_no" name="customer_no">
-                                    </div>
-                                </div>
-                                    <button class="btn btn-primary" type="submit">Show Invoice</button>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <script src="{{asset('inpos/js/jquery-ui.min.js')}}"></script>
-        <script src="{{asset('inpos/plugins/jquery-spinner/js/jquery.spinner.js')}}"></script>
-        <script src="{{asset('inpos/plugins/bootstrap-select/js/bootstrap-select.js')}}"></script>
-        <script src="{{asset('inpos/js/pos-scripts.js')}}"></script>
+							</tbody>
 
-        <script>
-            $('aside#leftsidebar').addClass('m-l--300');
-            $('section.content').addClass('m-l-15');
-            $('.left_text').addClass('m-l-55');
-            $('#sidebarMenuSwitch span').removeClass('rotated');
-        </script>
-  @endsection
+							<tfoot>
+								<th colspan="6">Total:<b class="total">0</b></th>
+							</tfoot>
 
-        @section('content')
-            {{csrf_field()}}
-            <div class="row clearfix">
-                <div class="col-md-4">
-                    <div class="row" id="messageDiv" style="display: none">
-                        <div class="col-md-12">
-                            <div class="alert alert-success">
-                                <a class="close" href="javascript:void(0);" onclick="closeMessage();">x</a>
-                                <strong>Success! </strong><span id="message"></span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="header loader-div">
-                            <h2 style="display: inline-block;">
-                                Cart
-                            </h2>
-                            <div class="lds-ellipsis m-l-25" style="display: none"><div></div><div></div><div></div><div></div></div>
-                        </div>
-                        <div class="body">
-                            <div class="carts">
-                                <div id="tblDiv">
 
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>Item</th>
-                                            <th>Quantity</th>
-                                            <th>Price</th>
-                                            <th>Delete</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
+						</table>
+						<input type="button" class="btn btn-lg btn-primary add" value="Add New Item">
+						<hr>
 
-                                                <tr id="cartRow">
-                                                    <th scope="row"></th>
-                                                    <td></td>
-                                                    <td></td>
-                                                    <td>
-                                                        <a href="javascript:void(0);" class="col-red" id="deleteCartItem">
-                                                            <i class="material-icons">delete</i>
-                                                            <input type="hidden"  id="cartId">
-                                                            <input type="hidden"  id="itemId">
-                                                            <input type="hidden" id="itemQuantity">
-                                                        </a>
-                                                    </td>
-                                                </tr>
 
-                                        </tbody>
-                                    </table>
-                                    <div class="totalInfo clearfix m-t-20 b-t b-b p-t-10 p-b-10">
-                                        <div class="totalDiv">
-                                            <p class="title">Total = <span class="amount"></span></p>
-                                            <p class="title">Vat = <span class="amount"></span></p>
-                                            <p class="title">Amount to be paid = <span class="amount" id="amountToBePaid"></span></p>
-                                        </div>
-                                    </div>
-                                    <div class="m-b-10 m-r-10 p-t-10 clearfix" style="display: block;">
-                                        <a href="javascript:void(0);" id="delallcart" class="btn btn-danger m-r-10">Suspend</a>
-                                        <a href="javascript:void(0);" id="paymentbtn" class="btn btn-success">Payment</a>
-                                    </div>
+					<hr>
 
-                                        <p>Select Items</p>
 
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-8">
-                    <div class="card">
-                        <div class="border-bottom" style="padding: 15px 15px 0px 15px;">
-                            <div class="row clearfix">
-                                <div class="col-sm-6">
-                                    <div class="form-group" style="margin-bottom: 0px;">
-                                        <div class="form-line">
-                                            <input class="form-control" onkeyup="myFunction();" placeholder="Search Product Item Here" type="text" name="produceitem" id="myInput">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="body">
-                            <div id="itemswrapper">
-                                <div class="row scroll-card" id="allItems" >
-                                  @foreach($products as $product)
-                                    <div class="col-md-4 col-sm-6" id="singleItem">
-                                        <div class="card clearfix">
-                                            <div class="itemwrapper text-center">
-                                                <div id="itemSingle">
-                                                    <input type="hidden" id="itemid" value="{{$product->stocks->p_code}}">
-                                                    <input type="hidden" id="itemName" value="{{$product->stocks->p_name}}">
-                                                    <h2>{{$product->stocks->p_name}}</h2>
-                                                    <img src="{{ asset('Images/Product_Image') }}/{{ $product->p_image }}" class="center" alt="{{ $product->p_image }}" style="width:80%; height:50%;">
-                                                    <p class="price">{{$product->p_price}}৳ (<span id="stock" class="quantity">{{$product->stocks->quantity}}</span>)</p>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 margin-0" style="margin-bottom: 0px;">
-                                                            <div class="left_text m-l-25">
-                                                                <label for="quantity">Quantity</label>
-                                                            </div>
-                                                            <div class="right_text">
-                                                                <div class="input-group spinner" data-trigger="spinner" style="margin-bottom: 5px;">
-                                                                    <div class="form-line">
-                                                                        <input class="form-control margin-0 text-center" id="itemquantity" type="text" name="item_quantity"  value="0" data-rule="quantity" style="font-weight: 700;margin-bottom:0px;width: 50px;">
-                                                                    </div>
-                                                                    <span class="input-group-addon">
-                                                                    <a href="javascript:;" class="spin-up" data-spin="up"><i class="glyphicon glyphicon-chevron-up"></i></a>
-                                                                    <a href="javascript:;" class="spin-down" data-spin="down"><i class="glyphicon glyphicon-chevron-down"></i></a>
-                                                                </span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-sm-12 text-center" style="margin-bottom: 10px;">
-                                                            <a class="btn bg-teal" id="addToCartBtn">Add to cart</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        @endsection
-@
+
+				</div>
+
+			</div>
+		</div>
+			<!--  Right -->
+
+
+		</form>
+		<!-- Modal -->
+
+
+	<!-- Row End -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+  <script type="text/javascript">
+  	function totalAmount(){
+  		var t = 0;
+  		$('.amount').each(function(i,e){
+  			var amt = $(this).val()-0;
+  			t += amt;
+  		});
+  		$('.total').html(t);
+  	}
+
+    $(function () {
+  		$('.getmoney').change(function(){
+  			var total = $('.total').html();
+  			var getmoney = $(this).val();
+  			var t = getmoney - total;
+  			$('.backmoney').val(t).toFixed(2);
+  		});
+
+
+  		$('.add').click(function () {
+  			var product = $('.product_id').html();
+  			var n = ($('.neworderbody tr').length - 0) + 1;
+  			var tr = '<tr><td class="no">' + n + '</td>' + '<td><select class="form-control product_id" name="product_id[]">' + product + '</select></td>' +
+                      '<td><input type="text" class="name form-control" name="name[]"></td>'+
+                      '<td><input type="text" class="price form-control" name="price[]"></td>' +
+                      '<td><input type="text" class="available form-control" name="available[]"></td>'+
+              				'<td><input type="text" class="discount form-control" name="discount[]"></td>' +
+                      '<td><input type="text" class="qty form-control" name="qty[]"></td>' +
+              				'<td><input type="text" class="amount form-control" name="amount[]"></td>' +
+              				'<td><input type="button" class="btn btn-danger delete" value="x"></td></tr>';
+  			$('.neworderbody').append(tr);
+  		});
+
+
+  		$('.neworderbody').delegate('.delete', 'click', function () {
+  			$(this).parent().parent().remove();
+  			totalAmount();
+  		});
+
+  		$('.neworderbody').delegate('.product_id', 'change', function () {
+  			var tr = $(this).parent().parent();
+
+        var price = tr.find('.product_id option:selected').attr('data-price');
+  			tr.find('.price').val(price);
+
+        var name = tr.find('.product_id option:selected').attr('data-name');
+  			tr.find('.name').val(name);
+
+        var discount = tr.find('.product_id option:selected').attr('data-discount');
+  			tr.find('.discount').val(discount);
+
+        var available = tr.find('.product_id option:selected').attr('data-available');
+  			tr.find('.available').val(available);
+
+
+  			var qty = tr.find('.qty').val() - 0;
+  			var discount = tr.find('.discount').val() - 0;
+  			var price = tr.find('.price').val() - 0;
+
+  			var total = (qty * price) - ((qty * price * discount)/100);
+  			tr.find('.amount').val(total);
+  			totalAmount();
+  		});
+
+      $('.neworderbody').delegate('.qty , .dis', 'keyup', function () {
+  			var tr = $(this).parent().parent();
+  			var qty = tr.find('.qty').val() - 0;
+  			var discount = tr.find('.discount').val() - 0;
+  			var price = tr.find('.price').val() - 0;
+
+  			var total = (qty * price) - ((qty * price * discount)/100);
+  			tr.find('.amount').val(total);
+  			totalAmount();
+  		});
+
+          $('#hideshow').on('click', function(event) {
+  			 $('#content').removeClass('hidden');
+  			$('#content').addClass('show');
+               $('#content').toggle('show');
+          });
+
+
+
+  	});
+  </script>
+
+
+
+
+ <script lang='javascript'>
+ $(document).ready(function(){
+  $('#printPage').click(function(){
+        var data = '<input type="button" value="Print this page" onClick="window.print()">';
+        data += '<div id="toPrint">';
+        data += $('#toPrint').html();
+        data += '</div>';
+
+        myWindow=window.open('','','width=1200,height=1000');
+        myWindow.innerWidth = screen.width;
+        myWindow.innerHeight = screen.height;
+        myWindow.screenX = 0;
+        myWindow.screenY = 0;
+        myWindow.document.write(data);
+        myWindow.focus();
+    });
+ });
+ </script>
+</div>
+
+@endsection

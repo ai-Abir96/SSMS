@@ -29,18 +29,21 @@
                       <table class="table table-striped">
                         <thead>
                             <tr>
-                              <td>Sub Category Name</td>
-                              <td>Description</td>
-                              <td colspan="2">Action</td>
+                              <th>Category Name</th>
+                              <th>Sub Category Name</th>
+                              <th>Description</th>
+                              <th colspan="2">Action</td>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($scategories as $scategory)
                             <tr>
+                                <td>{{$scategory->categories->ct_name}}</td>
                                 <td>{{$scategory->sct_name}}</td>
                                 <td>{{$scategory->sct_description}}</td>
                                 <td><a
                                         onclick="update_scat('{{$scategory->id}}',
+                                                            '{{$scategory->categories->ct_name}}',
                                                            '{{$scategory->sct_name}}',
                                                            '{{$scategory->sct_description}}');"
                                       class="btn btn-primary" data-toggle="modal"data-target="#scat_editModal">Edit</a></td>
@@ -74,6 +77,17 @@
         <div class="modal-body">
           <form method="POST" action="{{ route('scat_create' ) }}">
             @csrf
+
+            <div class="form-group row">
+                <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Category Name') }}</label>
+                <div class="col-md-6">
+                  <select class="form-control" name="cat_id">
+                      @foreach($categories as $category)
+                      <option value="{{$category->id}}">{{$category->ct_name}}</option>
+                      @endforeach
+                  </select>
+                </div>
+            </div>
 
             <div class="form-group row">
                 <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Sub Category Name') }}</label>
@@ -143,6 +157,17 @@
 
                   <input id="sct_id" type="hidden" class="form-control" name="id" />
 
+
+                              <div class="form-group ">
+                                  <label for="name">Sub Category Name:</label>
+
+                                    <select class="form-control" name="cat_id" >
+                                        @foreach($categories as $category)
+                                        <option id="cat_id" value="{{$category->id}}">{{$category->ct_name}}</option>
+                                        @endforeach
+                                    </select>
+
+                              </div>
 
                   <div class="form-group">
 
@@ -222,9 +247,10 @@
 
 
 <script>
-                function update_scat(id,sct_name,sct_description)
+                function update_scat(id,cat_id,sct_name,sct_description)
                 {
                     document.getElementById("sct_id").value  = id;
+                    document.getElementById("cat_id").value  = cat_id;
                     document.getElementById("sct_name").value  = sct_name;
                     document.getElementById("sct_description").value  = sct_description;
                 }

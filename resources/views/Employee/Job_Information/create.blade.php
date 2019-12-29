@@ -17,7 +17,7 @@
                             <div class="col-md-6">
                               <select class="form-control" name="emp_id" >
                                 @foreach ($einfos as $ef)
-                                  <option value="{{ $ef->id }}" >{{ $ef->id }}  {{$ef->emp_lname}}</option>
+                                  <option value="{{ $ef->id }}" >{{ $ef->id }}  {{$ef->name}}</option>
                                 @endforeach
                               </select>
                         </div>

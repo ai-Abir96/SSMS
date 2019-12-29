@@ -36,7 +36,7 @@ class CreateEmpInfosTable extends Migration
           $table->string('ec_address');
           $table->timestamps();
 
-          $table->foreign('emp_user_id')->references('id')->on('users')->onCascade('delete');
+          $table->foreign('emp_user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

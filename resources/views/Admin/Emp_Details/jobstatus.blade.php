@@ -38,8 +38,8 @@
                             @foreach($ejob as $ej )
                             <tr>
                                 <td>{{$ej->emp_id}}</td>
-                                <td>{{$ej->emp_infos->emp_lname}}</td>
-                                <td>{{$ej->emp_pos->name}}</td>
+                                <td>{{$ej->jusers->name}}</td>
+                                <td>{{$ej->positions->name}}</td>
                                 @if($ej->status =='Active')
                                   <td class="bg-success rounded">{{$ej->status}}</td>
                                 @endif
@@ -93,7 +93,7 @@
                 <select class="form-control" name="status">
                     <option>Active</option>
                     <option>On Leave</option>
-                    
+
                 </select>
               </div>
           </div>

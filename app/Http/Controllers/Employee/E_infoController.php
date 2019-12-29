@@ -3,20 +3,18 @@
 namespace App\Http\Controllers\Employee;
 use App\Http\Controllers\Controller;
 use App\Emp_info;
+use App\E_contact_info;
+use App\E_personal_info;
+use App\E_emergancy_info;
 use App\User;
+use App\Emp_job;
 use Illuminate\Http\Request;
 use Image;
-
+Use Auth;
+Use Carbon\Carbon;
 
 class E_infoController extends Controller
 {
-
-    public function index()
-    {
-        $einfo = Emp_info::all();
-        return view('Employee.Personal_Info.index',compact('einfo'));
-    }
-
 
     public function create()
     {
@@ -36,7 +34,6 @@ class E_infoController extends Controller
           'emp_email'=> ['required','email','max:30'],
           'employee_nid'=> ['required','integer','min:13','max:20'],
           'emp_birth_date'=> ['required','date_format:"d-m-Y"'],
-          'emp_age'=> ['required','integer','max:3'],
           'emp_blood'=> ['required','string'],
           'emp_preaddress'=> ['required','string','max:100'],
           'emp_peraddress'=> ['required','string','max:100'],
@@ -53,29 +50,43 @@ class E_infoController extends Controller
     public function store(Request $request)
     {
 
-      $last_inserted_id = Emp_info::insertGetId([
-        'emp_user_id' => $request -> emp_user_id,
-        'emp_image'=> $request-> emp_image,
-        'emp_fname'=> $request-> emp_fname,
-        'emp_lname'=> $request-> emp_lname,
-        'emp_phone1'=> $request-> emp_phone1,
-        'emp_phone2'=> $request-> emp_phone2,
-        'emp_email'=> $request-> emp_email,
-        'employee_nid'=>$request-> employee_nid ,
-        'emp_birth_date'=> $request-> emp_birth_date,
-        'emp_age'=> $request-> emp_age,
-        'emp_blood' => $request-> emp_blood,
-        'emp_preaddress'=> $request-> emp_preaddress,
-        'emp_peraddress'=> $request-> emp_peraddress,
-        'emp_marital_status'=>$request-> emp_marital_status,
+      E_emergancy_info::insert([
+        'ee_user_id' => $request -> emp_user_id,
         'ec_name'=> $request -> ec_name,
         'ec_phone1'=> $request -> ec_phone1,
         'ec_phone2'=> $request -> ec_phone2,
         'ec_relation'=> $request -> ec_relation,
         'ec_address'=> $request -> ec_address,
+        'created_at'=> Carbon::now(),
+
 
       ]);
 
+
+      E_contact_info::insert([
+        'ec_user_id' => $request -> emp_user_id,
+        'emp_phone1'=> $request-> emp_phone1,
+        'emp_phone2'=> $request-> emp_phone2,
+        'emp_email'=> $request-> emp_email,
+        'emp_preaddress'=> $request-> emp_preaddress,
+        'emp_peraddress'=> $request-> emp_peraddress,
+        'created_at'=> Carbon::now(),
+      ]);
+
+
+      $last_inserted_id = E_personal_info::insertGetId([
+        'ep_user_id' => $request -> emp_user_id,
+        'emp_image'=> $request-> emp_image,
+        'emp_fname'=> $request-> emp_fname,
+        'emp_lname'=> $request-> emp_lname,
+        'employee_nid'=>$request-> employee_nid ,
+        'emp_birth_date'=> $request-> emp_birth_date,
+        'emp_age'=> Carbon::parse($request-> emp_birth_date)->age,
+        'emp_blood' => $request-> emp_blood,
+        'emp_marital_status'=>$request-> emp_marital_status,
+        'created_at'=> Carbon::now(),
+
+      ]);
 
       if ($request->hasFile('emp_image'))
       {
@@ -84,7 +95,7 @@ class E_infoController extends Controller
               $photo_name       =  $last_inserted_id . "." . $photo_extension;
               Image::make($photo_upload)->resize(320,240)->save(base_path('public/Images/Employee_Image/'.$photo_name),100);
 
-              Emp_info::find($last_inserted_id)->update(['emp_image' => $photo_name,]);
+              E_personal_info::find($last_inserted_id)->update(['emp_image' => $photo_name,]);
 
 
       }
@@ -98,20 +109,95 @@ class E_infoController extends Controller
 
 
 
-    public function show(Emp_info $emp_info)
+    public function show()
     {
+        $id = Auth::user()->id;
+
+        $pinfo = E_personal_info::where('ep_user_id',$id)->first();
+        $cinfo = E_contact_info::where('ec_user_id',$id)->first();
+        $einfo = E_emergancy_info::where('ee_user_id',$id)->first();
+        $jinfo = Emp_job::where('emp_id',$id)->first();
+
+
+        return view('Employee.Personal_Info.view',compact('pinfo','cinfo','einfo','jinfo'));
 
     }
 
 
-    public function edit(Emp_info $emp_info)
+    public function edit()
     {
-
+      $id = Auth::user()->id;
+      $pinfo = E_personal_info::where('ep_user_id',$id)->first();
+      $cinfo = E_contact_info::where('ec_user_id',$id)->first();
+      $einfo = E_emergancy_info::where('ee_user_id',$id)->first();
+      return view('Employee.Personal_Info.edit',compact('pinfo','cinfo','einfo'));
     }
 
 
-    public function update(Request $request, Emp_info $emp_info)
+    public function update(Request $request)
     {
+      $id = Auth::user()->id;
+      E_emergancy_info::where('ee_user_id',$id)->update([
+        'ee_user_id' => $request -> emp_user_id,
+        'ec_name'=> $request -> ec_name,
+        'ec_phone1'=> $request -> ec_phone1,
+        'ec_phone2'=> $request -> ec_phone2,
+        'ec_relation'=> $request -> ec_relation,
+        'ec_address'=> $request -> ec_address,
+        'updated_at'=> Carbon::now(),
+
+      ]);
+
+
+      E_contact_info::where('ec_user_id',$id)->update([
+        'ec_user_id' => $request -> emp_user_id,
+        'emp_phone1'=> $request-> emp_phone1,
+        'emp_phone2'=> $request-> emp_phone2,
+        'emp_email'=> $request-> emp_email,
+        'emp_preaddress'=> $request-> emp_preaddress,
+        'emp_peraddress'=> $request-> emp_peraddress,
+        'updated_at'=> Carbon::now(),
+      ]);
+
+
+      if(!empty($request-> emp_image))
+      {
+        $image = $request-> emp_image;
+      }
+      else
+      {
+        $image = Auth::user()-> personals -> emp_image;
+      }
+
+
+ E_personal_info::where('ep_user_id',$id)->update([
+        'ep_user_id' => $request -> emp_user_id,
+        'emp_fname'=> $request-> emp_fname,
+        'emp_lname'=> $request-> emp_lname,
+        'emp_image'=> $image,
+        'employee_nid'=>$request-> employee_nid ,
+        'emp_birth_date'=> $request-> emp_birth_date,
+        'emp_age'=> Carbon::parse($request-> emp_birth_date)->age,
+        'emp_blood' => $request-> emp_blood,
+        'emp_marital_status'=>$request-> emp_marital_status,
+        'updated_at'=>Carbon::now(),
+
+      ]);
+
+      if ($request->hasFile('emp_image'))
+      {
+              $photo_upload     =  $request -> emp_image;
+              $photo_extension  =  $photo_upload -> getClientOriginalExtension();
+              $photo_name       =  $id . "." . $photo_extension;
+              Image::make($photo_upload)->resize(320,240)->save(base_path('public/Images/Employee_Image/'.$photo_name),100);
+
+              E_personal_info::where('ep_user_id',$id)->update(['emp_image' => $photo_name,]);
+
+
+      }
+
+      return redirect()->route('Einfo_show')
+                       ->with('success','Employee Information is successfully Updated.');
 
     }
 
@@ -120,17 +206,17 @@ class E_infoController extends Controller
 //admin area
     public function nameinfo()
     {
-        $einfo = Emp_info::all();
+        $einfo = E_personal_info::all();
         return view('Admin.Emp_Details.nameinfo',compact('einfo'));
     }
     public function emergancyinfo()
     {
-        $einfo = Emp_info::all();
+        $einfo = E_emergancy_info::all();
         return view('Admin.Emp_Details.emergancyinfo',compact('einfo'));
     }
     public function contactinfo()
     {
-        $einfo = Emp_info::all();
+        $einfo = E_contact_info::all();
         return view('Admin.Emp_Details.contactinfo',compact('einfo'));
     }
 

@@ -45,8 +45,8 @@
                             @foreach($ejob as $ej)
                             <tr>
                                 <td>{{$ej->emp_id}}</td>
-                                <td>{{$ej->emp_infos->emp_lname}}</td>
-                                <td>{{$ej->emp_pos->name}}</td>
+                                <td>{{$ej->jusers->name}}</td>
+                                <td>{{$ej->positions->name}}</td>
                                 <td>{{$ej->salary}}</td>
                                 <td>{{$ej->bonus}}</td>
                                 <td>{{$ej->status}}</td>

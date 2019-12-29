@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 
@@ -34,18 +32,18 @@
 
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                            <img src="{{ asset('Images/Employee_Image') }}/{{ Auth::user()->emp_infos->emp_image}}"
-                                  alt="{{ Auth::user()->emp_infos->emp_image }}" class="rounded-circle"
+                            <img src="{{ asset('Images/Employee_Image') }}/{{ Auth::user()->personals->emp_image}}"
+                                  alt="{{ Auth::user()->personals->emp_image }}" class="rounded-circle"
                                   style="width:100px;height:100px"/>
 
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold"><big>
-                                    {{ Auth::user()->emp_infos->emp_fname}}
+                                    {{ Auth::user()->personals->emp_fname}}
                                 </big></span>
                                 <span class="text-muted text-xs block">Admin<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a class="dropdown-item" href="profile.html">Profile</a></li>
+                                <li><a href="{{ route('Einfo_show') }}"class="dropdown-item" href="profile.html">Profile</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">
@@ -55,9 +53,13 @@
 
 
                     <li >
-                        <a href="{{ route('pos_index') }}"><i class=" fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
+                        <a href="{{ route('pos_index') }}"><i class=" fa fa-shopping-cart"></i> <span class="nav-label">Order</span></a>
                     </li>
-
+                    <!-- Products -->
+                    <li>
+                        <a href="{{ route('rp_index') }}"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Refund</span>  </a>
+                    </li>
+                    <!-- Products end -->
 
                     <!-- User -->
                     <li>
@@ -66,12 +68,12 @@
                     <!-- User end -->
                     <!-- Employee -->
                     <li>
-                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Employee</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">User Profile</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('emp_nameinfo') }}"> Personal Information </a></li>
                             <li><a href="{{ route('emp_contactinfo') }}"> Contact Information </a></li>
                             <li><a href="{{ route('emp_emergancyinfo') }}"> Emergacy Information </a></li>
-                            <li><a href="{{ route('emp_jobinfo') }}"> Job Information </a></li>
+                            <li><a href="{{ route('emp_jobinfo') }}"> Job Profile </a></li>
                             <li><a href="{{ route('jobstatus') }}"> Status Information </a></li>
                             <li><a href="{{ route('Ejob_index') }}"> Salary Information </a></li>
                         </ul>
@@ -116,6 +118,20 @@
                     </li>
                     <!-- Stock end -->
 
+
+
+                    <!-- Others -->
+                    <li>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('r_daily') }}"> Daily Sales Report </a></li>
+                            <li><a href="{{ route('r_monthly') }}"> Monthly Sales Report </a></li>
+                            <li><a href=""> Monthly Salary Report </a></li>
+                            <li><a href=""> Monthly Profit Report </a></li>
+
+                        </ul>
+                    </li>
+                    <!-- Others end -->
 
 
 

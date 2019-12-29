@@ -44,9 +44,11 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Category Name') }}</label>
 
                             <div class="col-md-6">
-                              <select class="form-control" name="fcat_id">
-                                @foreach ($categories as $category)
-                                  <option value="{{$category->id}}">{{ $category-> ct_name }}</option>
+                              <select id="cat" class="form-control" name="fcat_id">
+                                <option >----Select a Category----</option>
+                                @foreach ($categories as $key => $category)
+
+                                  <option value="{{$key}}" >{{ $category }}</option>
                                 @endforeach
                               </select>
                             </div>
@@ -56,10 +58,9 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Sub Category Name') }}</label>
 
                             <div class="col-md-6">
-                              <select class="form-control" name="fscat_id">
-                                @foreach ($subcategories as $subcategory)
-                                  <option value="{{$subcategory->id}}">{{ $subcategory-> sct_name }}</option>
-                                @endforeach
+                              <select id="subcat" class="form-control" name="fscat_id">
+
+
                               </select>
                             </div>
                         </div>
@@ -136,4 +137,36 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="{{ asset('js/ajax-select-query.js') }}"></script>
+<script type="text/javascript">
+$('#cat').change(function(){
+    var fcat_id = $(this).val();
+
+    if(fcat_id){
+        $.ajax({
+           type:"GET",
+           url:"{{url('/stocks/get-subcat-list')}}?cat_id="+fcat_id,
+           success:function(res){
+            if(res){
+                $("#subcat").empty();
+                $("#subcat").append('<option>Select</option>');
+                $.each(res,function(key,value){
+                    $("#subcat").append('<option value="'+key+'">'+value+'</option>');
+                });
+
+            }else{
+               $("#subcat").empty();
+            }
+           }
+        });
+    }else{
+        $("#subcat").empty();
+
+    }
+   });
+
+</script>
 @endsection

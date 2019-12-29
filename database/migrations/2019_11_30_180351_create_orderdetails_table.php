@@ -15,17 +15,20 @@ class CreateOrderdetailsTable extends Migration
     {
         Schema::create('orderdetails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('order_no')->unique();
-            $table->string('from');
-            $table->string('to');
-            $table->decimal('total_amount');
-            $table->decimal('amount_paid');
-            $table->string('status');
+            $table->bigInteger('order_id')->unsigned();
+            $table->bigInteger('product_id')->unsigned();
+            $table->string('quantity');
+            $table->string('unitprice');
+            $table->string('discount')->nullable();
+            $table->string('amount');
             $table->timestamps();
+
+            $table->foreign('product_id')->references('id')->on('stocks')->onDelete('cascade');
+            $table->foreign('order_id')->references('id')->on('orders')->onDelete('cascade');
         });
     }
 
-    
+
     public function down()
     {
         Schema::dropIfExists('orderdetails');

@@ -33,7 +33,6 @@
                               <td>Product Name</td>
                               <td>Product Image</td>
                               <td>Price[৳]</td>
-                              <td>Vat [%]</td>
                               <td>Discount[%]</td>
                               <td colspan="2">Action</td>
                             </tr>
@@ -45,7 +44,6 @@
                                 <td>{{$product->stocks->p_name}}</td>
                                 <td><img src="{{ asset('Images/Product_Image') }}/{{ $product->p_image }}" class="rounded" alt="{{ $product->p_image }}" style="width:50px;height:50px";></td>
                                 <td>{{$product->p_price}}</td>
-                                <td>{{$product->p_vat}}</td>
                                 <td>{{$product->p_discount}}</td>
 
                                 <td><a href="{{ route('product_update_page', $product->id)}}" class="btn btn-primary">Edit</a></td>

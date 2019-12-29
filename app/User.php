@@ -45,9 +45,9 @@ class User extends Authenticatable
     {
       return $this->belongsToMany('App\Role');
     }
-    public function emp_infos()
+    public function personals()
     {
-      return $this->hasOne('App\Emp_info','emp_user_id');
+      return $this->hasOne('App\E_personal_info','ep_user_id');
     }
 
 

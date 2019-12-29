@@ -8,6 +8,7 @@ use App\Category;
 use App\Sub_category;
 use App\Supplier;
 use Illuminate\Http\Request;
+use DB;
 
 class StockController extends Controller
 {
@@ -37,13 +38,22 @@ class StockController extends Controller
     public function create()
     {
 
-      $categories = Category::all();
+      //$categories = Category::all();
       $subcategories = Sub_category::all();
       $suppliers = Supplier::all();
+      $categories = DB::table("categories")->pluck("ct_name","id");
 
       return view('Admin.Stock.create',compact('categories','subcategories','suppliers'));
 
     }
+
+    public function getsubcatList(Request $request)
+       {
+           $subcats = DB::table("sub_categories")
+           ->where("cat_id",$request-> cat_id)
+           ->pluck("sct_name","id");
+           return response()->json($subcats);
+       }
 
 
     public function store(Request $request)
@@ -65,16 +75,13 @@ class StockController extends Controller
     }
 
 
-    public function show(Stock $stock)
-    {
 
-    }
 
 
     public function edit($id)
     {
       $stocks = Stock::findOrFail($id);
-      $categories = Category::all();
+      $categories = DB::table("categories")->pluck("ct_name","id");
       $subcategories = Sub_category::all();
       $suppliers = Supplier::all();
 

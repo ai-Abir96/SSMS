@@ -51,7 +51,7 @@ width: 50%;
                             @foreach($einfo as $enfo)
                             <tr>
                                 <td>{{$enfo->id}}</td>
-                                <td>{{$enfo->emp_lname}}</td>
+                                <td>{{$enfo->users->name}}</td>
                                 <td>{{$enfo->emp_phone1}}</td>
                                 <td>{{$enfo->emp_phone2}}</td>
                                 <td>{{$enfo->emp_email}}</td>

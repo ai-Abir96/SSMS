@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Orderdetails;
 use App\Product;
 
 class PosController extends Controller
@@ -12,8 +13,8 @@ class PosController extends Controller
       $products =Product::all();
       return view('Admin.POS.index',compact('products'));
     }
-    public function index2(){
-      $products =Product::all();
-      return view('Admin.POS.index2',compact('products'));
-    }
+
+
+
+
 }

@@ -39,7 +39,7 @@
                             @foreach($einfo as $enfo)
                             <tr>
                                 <td>{{$enfo->id}}</td>
-                                <td>{{$enfo->emp_lname}}</td>
+                                <td>{{$enfo-> users-> name}}</td>
                                 <td>{{$enfo->ec_name}}</td>
                                 <td>{{$enfo->ec_phone1}}</td>
                                 <td>{{$enfo->ec_phone2}}</td>

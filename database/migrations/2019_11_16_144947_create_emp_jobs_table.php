@@ -24,8 +24,8 @@ class CreateEmpJobsTable extends Migration
             $table->string('departing_date')->nullable();
             $table->timestamps();
 
-            $table-> foreign('emp_id')->references('id')->on('emp_infos')->onCascade('delete');
-            $table-> foreign('position_id')->references('id')->on('emp_positions')->onCascade('delete');
+            $table-> foreign('emp_id')->references('id')->on('users')->onDelete('cascade');
+            $table-> foreign('position_id')->references('id')->on('emp_positions')->onDelete('cascade');
         });
     }
 

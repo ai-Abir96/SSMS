@@ -16,17 +16,31 @@
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-md-12">
-              <div class="card">
+              <div class="card" >
                   <div class="card-header">{{ __('Stock Details') }}</div>
 
-                  <div class="col-md-4 offset-md-0">
-                      <a href="{{ route('stock_create_page')}}"  class="btn btn-primary">
+                  <table>
+                    <tr >
+                      <td>
+                        <a href="{{ route('stock_create_page')}}"  class="btn btn-primary">
                           {{ __('Create New') }}
                       </a>
-                  </div>
-                  <div class="card-body">
+                    </td>
+                    <td style="width:810px"></td>
 
-                      <table class="table table-responsive-xl table-striped table-hover">
+
+                        <td>
+                          <a onclick="myApp.printTable()" class="btn btn-default" bgcolor="gray"><i class="fa fa-print">Print Page</i>
+
+                        </a>
+                      </td>
+                    </tr>
+
+                  </table>
+
+                  <div class="card-body" >
+
+                      <table id="toPrint" class="table table-responsive-xl table-striped table-hover">
                         <thead>
                             <tr>
                               <td>Product Code</td>
@@ -75,8 +89,22 @@
 
 
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+
+<script >
+
+  var myApp = new function () {
+         this.printTable = function () {
+             var tab = document.getElementById('toPrint');
+             var win = window.open('', '', 'height=700,width=700');
+             win.document.write(tab.outerHTML);
+             win.document.close();
+             win.print();
+         }
+     }
 
 
+</script>
 
 
 @endsection

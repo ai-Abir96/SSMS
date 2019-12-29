@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html>
 
@@ -34,13 +32,13 @@
 
                     <li class="nav-header">
                         <div class="dropdown profile-element">
-                          <img src="{{ asset('Images/Employee_Image') }}/{{ Auth::user()->emp_infos->emp_image}}"
-                                alt="{{ Auth::user()->emp_infos->emp_image }}" class="rounded-circle"
-                                style="width:100px;height:100px"/>
+                            <img src="{{ asset('Images/Employee_Image') }}/"
+                                  alt="" class="rounded-circle"
+                                  style="width:100px;height:100px"/>
 
                             <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                                 <span class="block m-t-xs font-bold"><big>
-                                      {{ Auth::user()->emp_infos->emp_fname}}
+                                    {{ Auth::user()->personals->emp_fname}}
                                 </big></span>
                                 <span class="text-muted text-xs block">Admin<b class="caret"></b></span>
                             </a>
@@ -49,60 +47,56 @@
                             </ul>
                         </div>
                         <div class="logo-element">
-                            Admin
+                            Salesman
                         </div>
                     </li>
 
 
                     <li >
-                        <a href=""><i class="fa fa-shopping-cart"></i> <span class="nav-label">POS</span></a>
+                        <a href="{{ route('pos_index') }}"><i class=" fa fa-shopping-cart"></i> <span class="nav-label">Order</span></a>
                     </li>
 
 
-                    <!-- User -->
+                    <!-- Products -->
                     <li>
-                        <a href="{{ route('user_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">User</span></a>
+                        <a href="{{ route('rp_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Refund</span>  </a>
                     </li>
-                    <!-- User end -->
-                    <!-- Employee -->
+                    <!-- Products end -->
+
+
+                    <!-- Product Categories-->
                     <li>
-                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Employee</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Product Categories</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="{{ route('emp_nameinfo') }}"> Personal Information </a></li>
-                            <li><a href="{{ route('emp_contactinfo') }}"> Contact Information </a></li>
-                            <li><a href="{{ route('emp_emergancyinfo') }}"> Emergacy Information </a></li>
-                            <li><a href="{{ route('emp_jobinfo') }}"> Job Information </a></li>
-                            <li><a href="{{ route('jobstatus') }}"> Status Information </a></li>
-                            <li><a href="{{ route('Ejob_index') }}"> Salary Information </a></li>
+                            <li><a href="{{ route('cat_index') }}"> Category </a></li>
+                            <li><a href="{{ route('scat_index') }}"> Sub Category </a></li>
                         </ul>
                     </li>
-                    <!-- employee end -->
+                    <!-- Product categories end -->
 
-                    <!-- Supplier -->
+                    <!-- Products -->
                     <li>
-                        <a href="{{ route('sup_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Supplier</span>  </a>
+                        <a href="{{ route('product_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Product Details</span>  </a>
                     </li>
-                    <!-- Supplier end -->
+                    <!-- Products end -->
+
+                    <!-- Stock -->
+                    <li>
+                        <a href="{{ route('stock_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Stock Details</span>  </a>
+                    </li>
+                    <!-- Stock end -->
+
+
 
                     <!-- Others -->
                     <li>
-                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Others</span><span class="fa arrow"></span></a>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Reports</span><span class="fa arrow"></span></a>
                         <ul class="nav nav-second-level collapse">
-                            <li><a href="{{ route('Eposition_index') }}"> Job Position </a></li>
-                            <li><a href="{{ route('role_index') }}"> User Roles </a></li>
+                            <li><a href="{{ route('r_daily') }}"> Daily Sales Report </a></li>
+
                         </ul>
                     </li>
                     <!-- Others end -->
-
-                    <!-- Product -->
-                    <!-- Product end -->
-                    <!-- Categories -->
-                    <!-- Categories end -->
-                    <!-- Supplier -->
-                    <!-- Supplier end -->
-                    <!-- Supplier -->
-                    <!-- Supplier end -->
-
 
 
 
@@ -116,7 +110,7 @@
         <div class="row border-bottom">
         <nav class="navbar navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            <a class="navbar-minimalize minimalize-styl-2 btn btn-primary " href="#"><i class="fa fa-bars"></i> </a>
+            <a class="navbar-minimalize minimalize-styl-2 btn btn-fabar " href="#"><i class="fa fa-bars"></i> </a>
             <form role="search" class="navbar-form-custom" action="">
                 <div class="form-group">
                     <input id="search" type="text" placeholder="Search for..." class="form-control" name="top-search" id="top-search">
@@ -178,6 +172,7 @@
     <script src="{{ asset('dashboard/js/custom.js') }}"></script>
     <script src="{{ asset('dashboard/js/plugins/pace/pace.min.js') }}"></script>
 
+    <script src="{{ asset('js/bootstrap-input-spinner.js') }}"></script>
     <!-- jQuery UI -->
     <script src="{{ asset('dash2/js/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script >

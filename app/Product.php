@@ -9,11 +9,7 @@ class Product extends Model
 
   protected $fillable = [
 
-    'sp_id',
-    'p_image',
-    'p_price',
-    'p_vat',
-    'p_discount',
+    'sp_id','p_image','p_price','p_discount',
 
     ];
 

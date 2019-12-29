@@ -17,13 +17,13 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('sp_id')->unsigned();
             $table->string('p_image')->nullable();
-            $table->string('p_price')->nullable();
-            $table->string('p_vat')->nullable();
+            $table->string('p_price')->nullable();          
             $table->string('p_discount')->nullable();
             $table->timestamps();
 
 
             $table->foreign('sp_id')->references('id')->on('stocks')->onDelete('cascade');
+
         });
     }
 

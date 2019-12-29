@@ -10,9 +10,4 @@ class Emp_position extends Model
         'name'
     ];
 
-
-    public function emp_jobs()
-    {
-      return $this->belongsTo('App\Emp_job');
-    }
 }

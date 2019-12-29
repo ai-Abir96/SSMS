@@ -17,14 +17,14 @@ class Emp_job extends Model
       'departing_date',
 ];
 
-public function emp_infos()
+public function jusers()
 {
-  return $this->hasOne('App\Emp_info','id','emp_id');
+  return $this->belongsTo('App\User','emp_id');
 }
 
-public function emp_pos()
+public function positions()
 {
-  return $this->hasOne('App\Emp_position','id','position_id');
+  return $this->belongsTo('App\Emp_position','position_id');
 }
 
 

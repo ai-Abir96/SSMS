@@ -8,6 +8,7 @@ use App\Emp_info;
 use App\Emp_position;
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 
 
 class E_jobController extends Controller
@@ -30,7 +31,7 @@ class E_jobController extends Controller
 
 
       $ejob = Emp_job::orderByRaw("FIELD(status , 'Active', 'On Leave', 'Departed')")->get();
-      $einfos=Emp_info::all();
+      $einfos=User::all();
       $epsn = Emp_position::all();
 
       return view('Employee.Job_Information.index',compact('ejob'));
@@ -40,7 +41,7 @@ class E_jobController extends Controller
     public function create()
     {
 
-       $einfos=Emp_info::all();
+       $einfos=User::all();
        $epsn = Emp_position::all();
       return view('Employee.Job_Information.create')->with([
 
@@ -63,6 +64,7 @@ class E_jobController extends Controller
         'status'=> $request -> status,
         'signing_date'=> $request -> signing_date,
         'departing_date'=> $request -> departing_date,
+        'created_at'=> Carbon::now(),
 
       ]);
 
@@ -84,6 +86,7 @@ class E_jobController extends Controller
     {
       Emp_job::find($request->id)->update([
         'status'=> $request -> status,
+        'updated_at'=> Carbon::now(),
       ]);
 
         return redirect()->route('jobstatus')
@@ -99,6 +102,7 @@ class E_jobController extends Controller
 
          Emp_job::find($request->id)->update([
             'salary' => $result,
+            'updated_at'=> Carbon::now(),
           ]);
 
         return redirect()->route('emp_jobinfo')
@@ -113,6 +117,7 @@ class E_jobController extends Controller
          Emp_job::find($request->id)->update([
             'departing_date' => $request->departing_date,
             'status'=> $request -> status,
+            'updated_at'=> Carbon::now(),
 
           ]);
 

@@ -1,85 +1,78 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Product;
+use App\Customer;
+use App\Order;
 use App\Orderdetails;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use Auth;
+
 
 class OrderdetailsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+          $user = Auth::user()-> id;
+          $customer = new Customer;
+          $input = $request-> all();
+          $customer -> c_name = $request-> get('c_name');
+          $customer -> c_email =$request-> get('c_email');
+          $customer -> c_phone =$request-> get('c_phone');
+          $customer -> c_address = $request-> get('c_address');
+          $customer ->save();
+          $cus = $customer-> id;
+          if($cus > 0){
+            $orders = new Order;
+            $orders -> user_id = $user;
+            $orders -> customer_id = $cus;
+            $orders -> totalamount = $request-> get('totalamount');
+            $orders ->save();
+            $ordr = $orders ->id;
+
+            if($ordr > 0){
+              for($id = 0; $id < count($input['p_id']); $id++){
+              $orderdetail = new Orderdetails;
+              $orderdetail -> order_id = $ordr;
+              $orderdetail -> product_id = $input['p_code'][$id];
+              $orderdetail -> quantity = $input['qty'][$id];
+              $orderdetail -> unitprice = $input['p_price'][$id];
+              $orderdetail -> discount = $input['p_discount'][$id];
+              $orderdetail -> amount = $input['amount'][$id];
+              $orderdetail -> save();
+
+        }
+      }
+          }
+
+
+  		$orderdetails = Orderdetails::where('order_id', $orders->id)->get();
+  	  $customerdetails = Customer::where('id', $customer->id)->get();
+      $ordersall = Order::where('id', $orders->id)->first();
+
+      return view('Invoice.o_invoice',compact('orderdetails','customerdetails','ordersall'));
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Orderdetails  $orderdetails
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Orderdetails $orderdetails)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Orderdetails  $orderdetails
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(Orderdetails $orderdetails)
     {
-        //
+
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Orderdetails  $orderdetails
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, Orderdetails $orderdetails)
     {
-        //
+
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Orderdetails  $orderdetails
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy(Orderdetails $orderdetails)
     {
-        //
+
     }
 }

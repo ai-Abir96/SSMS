@@ -7,6 +7,7 @@ use App\Product;
 use App\Stock;
 use Image;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class ProductController extends Controller
 {
@@ -17,7 +18,6 @@ class ProductController extends Controller
         'sp_id'=> ['required'],
         'p_image'=>['required','string'],
         'p_price'=> ['required','integer','max:50'],
-        'p_vat'=> ['required','integer','max:50'],
         'p_discount'=> ['required','integer','max:50'],
 
       ]);
@@ -48,8 +48,8 @@ class ProductController extends Controller
         'sp_id'=> $request-> sp_id,
         'p_image'=> $request-> p_image,
         'p_price'=> $request-> p_price,
-        'p_vat'=> $request-> p_vat,
         'p_discount'=> $request-> p_discount,
+        'created_at'=> Carbon::now(),
 
       ]);
 
@@ -90,11 +90,20 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-      $last_inserted_id = Product::insertGetId([
+      $idp = $id;
+      if(!empty($request-> p_image))
+      {
+        $image = $request-> p_image;
+      }
+      else
+      {
+        $image = Product:: p_image;
+      }
+
+       Product::where('id',$id)->update([
         'sp_id'=> $request-> sp_id,
-        'p_image'=> $request-> p_image,
+        'p_image'=> $image,
         'p_price'=> $request-> p_price,
-        'p_vat'=> $request-> p_vat,
         'p_discount'=> $request-> p_discount,
 
       ]);
@@ -102,12 +111,12 @@ class ProductController extends Controller
 
       if ($request->hasFile('p_image'))
       {
-              $photo_upload     =  $request -> p_image;
+              $photo_upload     =  $image;
               $photo_extension  =  $photo_upload -> getClientOriginalExtension();
-              $photo_name       =  $last_inserted_id . "." . $photo_extension;
+              $photo_name       =  $idp . "." . $photo_extension;
               Image::make($photo_upload)->resize(320,240)->save(base_path('public/Images/Product_Image/'.$photo_name),100);
 
-              Product::find($last_inserted_id)->update(['p_image' => $photo_name,]);
+              Product::where('id',$id)->update(['p_image' => $photo_name,]);
 
 
       }

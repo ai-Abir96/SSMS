@@ -1,4 +1,4 @@
-@extends('Dashboard.admin_dashboard')
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <div class="container">
@@ -55,7 +55,7 @@
                                 @enderror
                             </div>
                         </div>
-                      
+
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Discount[%]') }}</label>
 

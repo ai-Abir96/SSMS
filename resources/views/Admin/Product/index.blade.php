@@ -1,4 +1,4 @@
-@extends('Dashboard.admin_dashboard')
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 
@@ -17,7 +17,7 @@
       <div class="row justify-content-center">
           <div class="col-md-12">
               <div class="card">
-                  <div class="card-header">{{ __('Stock Details') }}</div>
+                  <div class="card-header">{{ __('Product Details') }}</div>
 
                   <div class="col-md-4 offset-md-0">
                       <a href="{{ route('product_create_page')}}"  class="btn btn-primary">
@@ -26,7 +26,7 @@
                   </div>
                   <div class="card-body">
 
-                      <table class="table table-responsive-xl table-striped table-hover">
+                      <table id="_search" class="table table-responsive-xl table-striped table-hover">
                         <thead>
                             <tr>
                               <td>Product Code</td>

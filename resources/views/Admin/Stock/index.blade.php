@@ -1,4 +1,5 @@
-@extends('Dashboard.admin_dashboard')
+
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 
@@ -40,7 +41,7 @@
 
                   <div class="card-body" >
 
-                      <table id="toPrint" class="table table-responsive-xl table-striped table-hover">
+                      <table id="_search" id="toPrint" class="table table-responsive-xl table-striped table-hover">
                         <thead>
                             <tr>
                               <td>Product Code</td>

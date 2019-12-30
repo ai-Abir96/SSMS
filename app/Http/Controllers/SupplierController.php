@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Supplier;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class SupplierController extends Controller
 {
@@ -60,6 +61,7 @@ class SupplierController extends Controller
         's_phone'=> $request -> s_phone,
         's_address'=> $request -> s_address,
         'description'=> $request -> description,
+        'created_at'=> Carbon::now(),
 
       ]);
 

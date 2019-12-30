@@ -17,10 +17,10 @@ class CreateOrderdetailsTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('order_id')->unsigned();
             $table->bigInteger('product_id')->unsigned();
-            $table->string('quantity');
-            $table->string('unitprice');
-            $table->string('discount')->nullable();
-            $table->string('amount');
+            $table->integer('quantity');
+            $table->float('unitprice');
+            $table->integer('discount')->nullable();
+            $table->float('amount');
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('stocks')->onDelete('cascade');

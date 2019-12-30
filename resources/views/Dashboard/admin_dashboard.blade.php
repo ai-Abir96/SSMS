@@ -43,7 +43,7 @@
                                 <span class="text-muted text-xs block">Admin<b class="caret"></b></span>
                             </a>
                             <ul class="dropdown-menu animated fadeInRight m-t-xs">
-                                <li><a href="{{ route('Einfo_show') }}"class="dropdown-item" href="profile.html">Profile</a></li>
+                                <li><a href="{{ route('Einfo_show') }}"class="dropdown-item" >Profile</a></li>
                             </ul>
                         </div>
                         <div class="logo-element">

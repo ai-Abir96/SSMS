@@ -1,4 +1,4 @@
-@extends('Dashboard.admin_dashboard')
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <div class="container">
@@ -94,7 +94,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Stock Price') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="number" class="form-control @error('name') is-invalid @enderror" name="st_price" value="{{$stocks->st_price}}" required autocomplete="name" autofocus>
+                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="st_price" value="{{$stocks->st_price}}" required autocomplete="name" autofocus>
 
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

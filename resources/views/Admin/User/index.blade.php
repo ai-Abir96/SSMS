@@ -23,7 +23,7 @@
                   </div>
                   <div class="card-body">
 
-                      <table class="table table-striped">
+                      <table  class="table table-striped">
                         <thead>
                             <tr>
                               <td>Id</td>
@@ -33,7 +33,7 @@
                               <td colspan="2">Action</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="_search">
                             @foreach($users as $user)
                             <tr>
                                 <td>{{$user->id}}</td>

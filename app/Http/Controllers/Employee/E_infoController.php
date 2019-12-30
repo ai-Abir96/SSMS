@@ -51,7 +51,7 @@ class E_infoController extends Controller
     {
 
       E_emergancy_info::insert([
-        'ee_user_id' => $request -> emp_user_id,
+        'ee_user_id' => Auth::user()-> id,
         'ec_name'=> $request -> ec_name,
         'ec_phone1'=> $request -> ec_phone1,
         'ec_phone2'=> $request -> ec_phone2,
@@ -64,7 +64,7 @@ class E_infoController extends Controller
 
 
       E_contact_info::insert([
-        'ec_user_id' => $request -> emp_user_id,
+        'ec_user_id' =>  Auth::user()-> id,
         'emp_phone1'=> $request-> emp_phone1,
         'emp_phone2'=> $request-> emp_phone2,
         'emp_email'=> $request-> emp_email,
@@ -75,7 +75,7 @@ class E_infoController extends Controller
 
 
       $last_inserted_id = E_personal_info::insertGetId([
-        'ep_user_id' => $request -> emp_user_id,
+        'ep_user_id' =>  Auth::user()-> id,
         'emp_image'=> $request-> emp_image,
         'emp_fname'=> $request-> emp_fname,
         'emp_lname'=> $request-> emp_lname,

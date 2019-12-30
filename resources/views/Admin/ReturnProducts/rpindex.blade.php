@@ -1,4 +1,8 @@
-@extends('Dashboard.admin_dashboard')
+@if((Auth::user()->roles->pluck('name')) == 'Admin')
+  @extends('Dashboard.admin_dashboard')
+@else((Auth::user()->roles->pluck('name')) == 'Salesman')
+  @extends('Dashboard.salesman_dashboard')
+@endif
 
 @section('content')
 <style>

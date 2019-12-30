@@ -9,6 +9,7 @@ use App\Sub_category;
 use App\Supplier;
 use Illuminate\Http\Request;
 use DB;
+use Carbon\Carbon;
 
 class StockController extends Controller
 {
@@ -66,7 +67,8 @@ class StockController extends Controller
         'fsup_id'=> $request-> fsup_id,
         'quantity'=> $request-> quantity,
         'st_price'=> $request-> st_price,
-        'description'=> $request-> description
+        'description'=> $request-> description,
+        'created_at'=> Carbon::now(),
       ]);
 
       return redirect()->route('stock_index')

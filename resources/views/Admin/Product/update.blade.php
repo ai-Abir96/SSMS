@@ -1,5 +1,4 @@
-@extends('Dashboard.admin_dashboard')
-
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -8,7 +7,7 @@
                 <div class="card-header">{{ __('Create User Roles') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('product_update', $products->id) }}">
+                    <form method="POST" action="{{ route('product_update', $products->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 
@@ -16,28 +15,17 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Product Code') }}</label>
 
                             <div class="col-md-6">
-                              <select class="form-control" name="fp_code">
+                              <select class="form-control" name="sp_id">
+                                <option >-----Please Select-----</option>
                                 @foreach ($stocks as $stock)
 
-                                  <option value="{{$stock->p_code}}">{{ $stock-> p_name }}</option>
+                                  <option value="{{$stock->id}}">{{ $stock-> p_code }} - {{ $stock-> p_name }}</option>
                                 @endforeach
                               </select>
                             </div>
                         </div>
 
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Product Name') }}</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="p_name" value="{{$products->p_name}}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Product Image') }}</label>

@@ -38,7 +38,7 @@
                               <td colspan="2">Action</td>
                             </tr>
                         </thead>
-                        <tbody>
+                        <tbody id="_search">
                             @foreach($suppliers as $supplier)
                             <tr>
                                 <td>{{$supplier->s_id}}</td>

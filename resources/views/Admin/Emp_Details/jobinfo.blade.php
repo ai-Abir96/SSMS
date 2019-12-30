@@ -37,7 +37,7 @@
                               <td><b>Employee Name</b></td>
                               <td><b>Designation</b></td>
                               <td><b>Salaray</b></td>
-                              <td><b>Bonus</b></td>
+
                               <td><b>Joining Date</b></td>
                               <td><b>Departing Date</b></td>
 
@@ -51,7 +51,6 @@
                                 <td>{{$ej->jusers->name}}</td>
                                 <td>{{$ej->positions->name}}</td>
                                 <td>{{$ej->salary}}</td>
-                                <td>{{$ej->bonus}}</td>
                                 <td>{{$ej->signing_date}}</td>
                                 <td>{{$ej->departing_date}}</td>
 

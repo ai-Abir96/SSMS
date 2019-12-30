@@ -20,8 +20,8 @@ class CreateStocksTable extends Migration
             $table->bigInteger('fcat_id')->unsigned();
             $table->bigInteger('fscat_id')->unsigned();
             $table->bigInteger('fsup_id')->nullable()->unsigned();
-            $table->string('quantity')->nullable();
-            $table->integer('st_price')->nullable();
+            $table->integer('quantity')->nullable();
+            $table->float('st_price')->nullable();
             $table->string('description')->nullable();
             $table->timestamps();
 

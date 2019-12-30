@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Sub_Category;
 use App\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class SubcategoryController extends Controller
 {
@@ -36,6 +37,7 @@ class SubcategoryController extends Controller
         'cat_id'=>  $request -> cat_id,
         'sct_name'=> $request -> sct_name,
         'sct_description'=> $request -> sct_description,
+        'created_at'=> Carbon::now(),
 
       ]);
 

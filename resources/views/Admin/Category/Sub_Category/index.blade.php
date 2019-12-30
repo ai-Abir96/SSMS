@@ -1,4 +1,4 @@
-@extends('Dashboard.admin_dashboard')
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 
@@ -26,7 +26,7 @@
                   </div>
                   <div class="card-body">
 
-                      <table class="table table-striped">
+                      <table id="_search"class="table table-striped">
                         <thead>
                             <tr>
                               <th>Category Name</th>

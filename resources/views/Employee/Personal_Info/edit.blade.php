@@ -1,5 +1,4 @@
-@extends('Dashboard.admin_dashboard')
-
+@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 @section('content')
 <link href="{{ asset('css/form-snippet.css') }}" rel="stylesheet">
 
@@ -9,7 +8,7 @@
           <form id="regForm" method="POST" action="{{ route('Einfo_update') }}" enctype="multipart/form-data">
                   @csrf
                  <h1>Employee Information</h1>
-                
+
 
                  <!-- One "tab" for each step in the form: -->
                  <div class="tab">Personal Information:

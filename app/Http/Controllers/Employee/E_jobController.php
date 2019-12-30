@@ -9,6 +9,7 @@ use App\Emp_position;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use Carbon\Carbon;
 
 
 class E_jobController extends Controller
@@ -19,7 +20,6 @@ class E_jobController extends Controller
         'emp_id'=> ['required'],
         'position_id'=> ['required'],
         'salary'=> ['required','integer'],
-        'bonus'=> ['required','integer'],
         'status'=> ['required','max:30'],
         'signing_date'=> ['required','date_format:"m-d-Y"'],
         'departing_date'=> ['date_format:"m-d-Y"'],
@@ -60,7 +60,6 @@ class E_jobController extends Controller
         'emp_id'=> $request -> emp_id,
         'position_id'=> $request -> position_id,
         'salary'=> $request -> salary,
-        'bonus'=> $request -> bonus,
         'status'=> $request -> status,
         'signing_date'=> $request -> signing_date,
         'departing_date'=> $request -> departing_date,
@@ -68,16 +67,9 @@ class E_jobController extends Controller
 
       ]);
 
-      return redirect()->route('Ejob_index')
+      return redirect()->route('emp_jobinfo')
                        ->with('success','Employee Job Information is successfully Added.');
     }
-
-
-    public function show(Emp_job $emp_job)
-    {
-
-    }
-
 
 
 
@@ -128,11 +120,6 @@ class E_jobController extends Controller
     }
 
 
-
-    public function destroy(Emp_job $emp_job)
-    {
-
-    }
 
 
 

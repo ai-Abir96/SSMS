@@ -9,6 +9,8 @@
 
                 <div class="card-body">
                     <h1> You are Restricted to Access this Area</h1>
+                    <h1> Your User ID is: {{Auth::user()->id}}</h1>
+                    <h1> Please Wait Untill You Get Your Role</h1>
                 </div>
             </div>
         </div>

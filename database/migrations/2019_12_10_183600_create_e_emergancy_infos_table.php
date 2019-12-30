@@ -17,8 +17,8 @@ class CreateEEmergancyInfosTable extends Migration
             $table->bigIncrements('id');
             $table->bigInteger('ee_user_id')->unsigned();
             $table->string('ec_name');
-            $table->string('ec_phone1');
-            $table->string('ec_phone2');
+            $table->integer('ec_phone1');
+            $table->integer('ec_phone2');
             $table->string('ec_relation');
             $table->string('ec_address');
             $table->timestamps();

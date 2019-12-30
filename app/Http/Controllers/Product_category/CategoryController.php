@@ -5,6 +5,7 @@ use App\Http\Controllers\Controller;
 
 use App\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class CategoryController extends Controller
 {
@@ -34,6 +35,7 @@ class CategoryController extends Controller
 
         'ct_name'=> $request -> ct_name,
         'ct_description'=> $request -> ct_description,
+        'created_at'=> Carbon::now(),
 
       ]);
 

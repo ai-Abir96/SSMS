@@ -1,4 +1,4 @@
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -16,7 +16,7 @@
 
                             <div class="col-md-6">
                               <select class="form-control" name="sp_id">
-                                <option >-----Please Select-----</option>
+                                <option value="{{$products->stocks->id}}">{{ $products->stocks-> p_code }} - {{ $products->stocks-> p_name }}</option>
                                 @foreach ($stocks as $stock)
 
                                   <option value="{{$stock->id}}">{{ $stock-> p_code }} - {{ $stock-> p_name }}</option>
@@ -31,7 +31,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Product Image') }}</label>
 
                             <div class="col-md-6">
-                              <input id="p_image" type="file"  name="p_image" placeholder="Image" required >
+                              <input id="p_image" type="file"  name="p_image" placeholder="Image"  >
 
                                 @error('p_image')
                                     <span class="invalid-feedback" role="alert">

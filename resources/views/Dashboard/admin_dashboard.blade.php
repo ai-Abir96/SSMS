@@ -75,7 +75,6 @@
                             <li><a href="{{ route('emp_emergancyinfo') }}"> Emergacy Information </a></li>
                             <li><a href="{{ route('emp_jobinfo') }}"> Job Profile </a></li>
                             <li><a href="{{ route('jobstatus') }}"> Status Information </a></li>
-                            <li><a href="{{ route('Ejob_index') }}"> Salary Information </a></li>
                         </ul>
                     </li>
                     <!-- employee end -->
@@ -86,15 +85,7 @@
                     </li>
                     <!-- Supplier end -->
 
-                    <!-- Others -->
-                    <li>
-                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Others</span><span class="fa arrow"></span></a>
-                        <ul class="nav nav-second-level collapse">
-                            <li><a href="{{ route('Eposition_index') }}"> Job Position </a></li>
-                            <li><a href="{{ route('role_index') }}"> User Roles </a></li>
-                        </ul>
-                    </li>
-                    <!-- Others end -->
+
 
                     <!-- Product Categories-->
                     <li>
@@ -105,18 +96,18 @@
                         </ul>
                     </li>
                     <!-- Product categories end -->
-
+                    <!-- Stock -->
+                    <li>
+                        <a href="{{ route('stock_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Stock Details</span>  </a>
+                    </li>
+                    <!-- Stock end -->
                     <!-- Products -->
                     <li>
                         <a href="{{ route('product_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Product Details</span>  </a>
                     </li>
                     <!-- Products end -->
 
-                    <!-- Stock -->
-                    <li>
-                        <a href="{{ route('stock_index') }}"><i class="fa fa-folder"></i> <span class="nav-label">Stock Details</span>  </a>
-                    </li>
-                    <!-- Stock end -->
+
 
 
 
@@ -126,13 +117,21 @@
                         <ul class="nav nav-second-level collapse">
                             <li><a href="{{ route('r_daily') }}"> Daily Sales Report </a></li>
                             <li><a href="{{ route('r_monthly') }}"> Monthly Sales Report </a></li>
-                            <li><a href=""> Monthly Salary Report </a></li>
-                            <li><a href=""> Monthly Profit Report </a></li>
+                            <li><a href="{{ route('r_stock') }}"> Empty Stock Report </a></li>
+                            <li><a href="{{ route('r_refund') }}"> Refund Report</a></li>
 
                         </ul>
                     </li>
                     <!-- Others end -->
-
+                    <!-- Others -->
+                    <li>
+                        <a href="#"><i class="fa fa-folder"></i> <span class="nav-label">Others</span><span class="fa arrow"></span></a>
+                        <ul class="nav nav-second-level collapse">
+                            <li><a href="{{ route('Eposition_index') }}"> Job Position </a></li>
+                            <li><a href="{{ route('role_index') }}"> User Roles </a></li>
+                        </ul>
+                    </li>
+                    <!-- Others end -->
 
 
                 </ul>

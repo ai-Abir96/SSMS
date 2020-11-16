@@ -44,7 +44,6 @@ width: 50%;
                               <td><b>Present Address</b></td>
                               <td><b>Permanent Address</b></td>
 
-                              <td colspan="2"><b>Action</b></td>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,7 +58,7 @@ width: 50%;
                                 <td>{{$enfo->emp_peraddress}}</td>
 
 
-                                <td><a href="" class="btn btn-primary">View</a></td>
+
 
                             </tr>
                             @endforeach

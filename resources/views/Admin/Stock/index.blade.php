@@ -1,5 +1,5 @@
 
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 
@@ -27,21 +27,14 @@
                           {{ __('Create New') }}
                       </a>
                     </td>
-                    <td style="width:810px"></td>
 
-
-                        <td>
-                          <a onclick="myApp.printTable()" class="btn btn-default" bgcolor="gray"><i class="fa fa-print">Print Page</i>
-
-                        </a>
-                      </td>
                     </tr>
 
                   </table>
 
                   <div class="card-body" >
 
-                      <table id="_search" id="toPrint" class="table table-responsive-xl table-striped table-hover">
+                      <table id="_search"  class="table table-responsive-xl table-striped table-hover">
                         <thead>
                             <tr>
                               <td>Product Code</td>
@@ -69,6 +62,7 @@
 
 
                                 <td><a href="{{ route('stock_update_page', $stock->id)}}" class="btn btn-primary">Edit</a></td>
+                                <td><a onclick="update('{{$stock->id}}','{{$stock->quantity}}','{{$stock->st_price}}');" class="btn btn-primary" data-toggle="modal"data-target="#pq">Price/Quantity</a></td>
                                 <td>
                                     <form action="{{ route('stock_delete', $stock->id)}}" method="post">
                                       @csrf
@@ -85,6 +79,66 @@
               </div>
             </div>
         </div>
+
+
+        <!-- - - - -  -  - - -  - - - -  - - Edit Status - -  - - - -  - - - - - - -->
+
+          <!-- The Modal -->
+          <div class="modal fade" id="pq">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <!-- Modal Header -->
+                <div class="modal-header">
+                  <h4 class="modal-title">Edit Status</h4>
+                  <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                  <form method="POST" action="{{ route('update_quantity_price' ) }}">
+                    @csrf
+
+                    <input type="hidden" name="id" id="id">
+                      <div class="form-group row">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Quantity') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="quantity" type="number" min='0' class="form-control @error('name') is-invalid @enderror" name="quantity"  required autocomplete="name" autofocus>
+
+                              @error('name')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+                      <div class="form-group row">
+                          <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Stock Price') }}</label>
+
+                          <div class="col-md-6">
+                              <input id="price" type="text" min='0' class="form-control @error('name') is-invalid @enderror" name="st_price"  required autocomplete="name" autofocus>
+
+                              @error('name')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                          </div>
+                      </div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                  <button type="submit" class="btn btn-primary" >Save Changes</button>
+                  <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+              </form>
+
+              </div>
+            </div>
+          </div>
+
 
 
 
@@ -107,5 +161,17 @@
 
 </script>
 
+<script>
+                function update(id,quantity,price)
+                {
+                  document.getElementById("id").value  = id;
+                  document.getElementById("quantity").value  = quantity;
+                  document.getElementById("price").value  = price;
+                }
+                function delete_cat(id)
+                {
+                    document.getElementById("cat_id").value  = id;
+                }
+</script>
 
 @endsection

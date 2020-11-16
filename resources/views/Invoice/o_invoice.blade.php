@@ -1,16 +1,18 @@
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <div class="container">
-  <div class="card">
+  <span class="float-right"> <button onclick="myApp.printTable()" >Print</button> </span>
+  <div id="toPrint"class="card">
+
 <div class="card-header">
 Order Invoice No
-<strong>{{$ordersall-> id}}/{{$ordersall->created_at}}</strong>
+<strong>{{$ordersall-> id}}/{{$ordersall->created_at->toDateString()}}</strong>
+<h3><center>SSMS</center></h3>
 
-  <span class="float-right"> <button >Print</button> </span>
 
 </div>
-<div class="card-body">
+<div  class="card-body">
 <div class="row mb-4">
 <div class="col-sm-6">
 <h3 class="mb-3">Customer Details:</h3>
@@ -92,4 +94,18 @@ Order Invoice No
 </div>
 </div>
 </div>
+<script >
+
+  var myApp = new function () {
+         this.printTable = function () {
+             var tab = document.getElementById('toPrint');
+             var win = window.open('', '', 'height=700,width=700');
+             win.document.write(tab.outerHTML);
+             win.document.close();
+             win.print();
+         }
+     }
+
+
+</script>
 @endsection

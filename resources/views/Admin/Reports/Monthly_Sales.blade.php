@@ -13,14 +13,24 @@
     <br />
   @endif
 
+
   <div class="container">
-    <form class="form-inline" action="{{route('dateinput')}}" method="POST">
-      @csrf
-      <div class="" style="width:200px">
-        <h3>Enter a Date:</h3> <input type="date" name="month"  class=" form-control">
-        <button type="submit">Submit</button>
+    <div class="card-body">
+      <div class="row justify-content-center">
+        <form class="form-inline fustify-content-center" action="{{route('monthinput')}}" method="POST">
+          @csrf
+      <div class="form-group">
+        <label class="mr-3">From:</label>
+        <input type="date" class="form-control mr-4" name="from" required>
       </div>
+      <div class="form-group">
+        <label class="mr-3">To:</label>
+        <input type="date" class="form-control mr-4" name="to" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+      </div>
+    </div>
 
       <div class="row justify-content-center">
           <div class="col-md-12">
@@ -43,7 +53,10 @@
 
 
                   <div id="toPrint"  class="card-body" >
-                    @if(isset($dailyreport))
+                    <h3><center>SSMS</center></h3>
+                    <h4>Monthly Sales Report</h4>
+                    @if(isset($monthlyreport))
+                    <h2><strong>Monthly Total Sales: {{$sum}} ৳</strong></h2>
                       <table class="table table-responsive-xl table-striped table-hover">
                         <thead>
                             <tr>
@@ -62,7 +75,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($dailyreport as $od)
+                            @foreach( $monthlyreport as $od)
                             <tr>
                                 <td>{{$od->order_id}}</td>
                                 <td>{{$od->orders->users->id}}-{{$od->orders->users->name}}</td>

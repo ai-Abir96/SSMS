@@ -1,11 +1,11 @@
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Create User Roles') }}</div>
+                <div class="card-header">{{ __('Create Product Stock') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('stock_create') }}">

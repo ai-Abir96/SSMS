@@ -32,7 +32,7 @@
                               <td><b>Alternate Phone No</b></td>
                               <td><b>Relation with Employee</b></td>
                               <td><b>Address</b></td>
-                              <td colspan="2"><b>Action</b></td>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -46,7 +46,7 @@
                                 <td>{{$enfo->ec_relation}}</td>
                                 <td>{{$enfo->ec_address}}</td>
 
-                                <td><a href="" class="btn btn-primary">View</a></td>
+
 
                             </tr>
                             @endforeach

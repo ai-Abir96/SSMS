@@ -1,3 +1,4 @@
+
 @extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
@@ -14,7 +15,7 @@
   @endif
 
   <div class="container">
-    <form class="form-inline" action="{{route('dateinput')}}" method="POST">
+    <form class="form-inline" action="{{route('refundbydate')}}" method="POST">
       @csrf
       <div class="" style="width:200px">
         Enter a Date: <input type="date" name="date"  class=" form-control">
@@ -25,11 +26,12 @@
       <div class="row justify-content-center">
           <div class="col-md-12">
               <div class="card" >
-                  <div class="card-header">{{ __('Daily Report') }}</div>
+                  <div class="card-header">{{ __('Refund Details') }}</div>
 
                   <table>
+                    <tr >
+                      <td style="width:810px"></td>
 
-                    <td style="width:810px"></td>
 
                         <td>
                           <a onclick="myApp.printTable()" class="btn btn-default" bgcolor="gray"><i class="fa fa-print">Print Page</i>
@@ -40,46 +42,41 @@
 
                   </table>
 
-
-
-                  <div id="toPrint"  class="card-body" >
+                  <div id="toPrint" class="card-body" >
                     <h3><center>SSMS</center></h3>
-                    <h4>Daily Sales Report</h4>
-                    @if(isset($dailyreport))
-                    <h2><strong>Daily Total Sales: {{$sum}} ৳</strong></h2>
-                      <table class="table table-responsive-xl table-striped table-hover" >
+                    <h4>Redund Details</h4>
+                    @if(isset($rps))
+                      <table id="_search"  class="table table-responsive-xl table-bordered table-hover">
                         <thead>
                             <tr>
-                              <td>Order Id</td>
-                              <td>Seller Name</td>
+                              <td>Order ID</td>
                               <td>Customer Name</td>
+                              <td>Seller Name</td>
+                              <td>Refunder Name</td>
                               <td>Product Code</td>
-                              <td>Quantity</td>
                               <td>Unit Price</td>
                               <td>Discount</td>
-                              <td>Sub Total</td>
-                              <td>Date</td>
-
-
+                              <td>Cause</td>
+                              <td>Quantity</td>
+                              <td>Amount</td>
+                              <td>Refund Time</td>
 
                             </tr>
-
                         </thead>
                         <tbody>
-                            @foreach($dailyreport as $od)
+                            @foreach($rps as $rp)
                             <tr>
-                                <td>{{$od->order_id}}</td>
-                                <td>{{$od->orders->users->id}}-{{$od->orders->users->name}}</td>
-                                <td>{{$od->orders->customers->c_name}}</td>
-                                <td>{{$od->product_id}}</td>
-                                <td>{{$od->quantity}}</td>
-                                <td>{{$od->unitprice}}</td>
-                                <td>{{$od->discount}}</td>
-                                <td>{{$od->amount}}</td>
-                                <td>{{$od->created_at->toDateString()}}</td>
-
-
-
+                                <td>{{$rp->order_id}}</td>
+                                <td>{{$rp->customers->c_name}}</td>
+                                <td>{{$rp->users-> name}}</td>
+                                <td>{{$rp->users-> name}}</td>
+                                <td>{{$rp->stocks-> p_code}}</td>
+                                <td>{{$rp->unitprice}}</td>
+                                <td>{{$rp->discount}}</td>
+                                <td>{{$rp->cause}}</td>
+                                <td>{{$rp->quantity}}</td>
+                                <td>{{$rp->amount}}</td>
+                                <td>{{$rp->created_at->toDateString()}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -92,9 +89,8 @@
         </div>
 
 
-
-
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script >
 
@@ -110,6 +106,7 @@
 
 
 </script>
+
 
 
 @endsection

@@ -1,3 +1,4 @@
+
 @extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
@@ -14,22 +15,15 @@
   @endif
 
   <div class="container">
-    <form class="form-inline" action="{{route('dateinput')}}" method="POST">
-      @csrf
-      <div class="" style="width:200px">
-        Enter a Date: <input type="date" name="date"  class=" form-control">
-        <button type="submit">Submit</button>
-      </div>
-    </form>
-
       <div class="row justify-content-center">
           <div class="col-md-12">
               <div class="card" >
-                  <div class="card-header">{{ __('Daily Report') }}</div>
+                  <div class="card-header">{{ __('Stock Details') }}</div>
 
                   <table>
+                    <tr >
+                      <td style="width:810px"></td>
 
-                    <td style="width:810px"></td>
 
                         <td>
                           <a onclick="myApp.printTable()" class="btn btn-default" bgcolor="gray"><i class="fa fa-print">Print Page</i>
@@ -40,51 +34,38 @@
 
                   </table>
 
-
-
-                  <div id="toPrint"  class="card-body" >
+                  <div id="toPrint" class="card-body" >
                     <h3><center>SSMS</center></h3>
-                    <h4>Daily Sales Report</h4>
-                    @if(isset($dailyreport))
-                    <h2><strong>Daily Total Sales: {{$sum}} ৳</strong></h2>
-                      <table class="table table-responsive-xl table-striped table-hover" >
+                    <h4>Empty Stock Report</h4>
+                      <table id="_search"  class="table table-responsive-xl table-bordered table-hover">
                         <thead>
                             <tr>
-                              <td>Order Id</td>
-                              <td>Seller Name</td>
-                              <td>Customer Name</td>
                               <td>Product Code</td>
+                              <td>Product Name</td>
+                              <td>Category</td>
+                              <td>Sub Category</td>
+                              <td>Supplier Name</td>
                               <td>Quantity</td>
-                              <td>Unit Price</td>
-                              <td>Discount</td>
-                              <td>Sub Total</td>
-                              <td>Date</td>
-
-
+                              <td>Stock Price</td>
 
                             </tr>
-
                         </thead>
                         <tbody>
-                            @foreach($dailyreport as $od)
+                            @foreach($stockdetails as $stock)
                             <tr>
-                                <td>{{$od->order_id}}</td>
-                                <td>{{$od->orders->users->id}}-{{$od->orders->users->name}}</td>
-                                <td>{{$od->orders->customers->c_name}}</td>
-                                <td>{{$od->product_id}}</td>
-                                <td>{{$od->quantity}}</td>
-                                <td>{{$od->unitprice}}</td>
-                                <td>{{$od->discount}}</td>
-                                <td>{{$od->amount}}</td>
-                                <td>{{$od->created_at->toDateString()}}</td>
-
+                                <td>{{$stock->p_code}}</td>
+                                <td>{{$stock->p_name}}</td>
+                                <td>{{$stock->categories-> ct_name}}</td>
+                                <td>{{$stock->subcategories-> sct_name}}</td>
+                                <td>{{$stock->suppliers-> s_id}}</td>
+                                <td>{{$stock->quantity}}</td>
+                                <td>{{$stock->st_price}}</td>
 
 
                             </tr>
                             @endforeach
                         </tbody>
                       </table>
-                      @endif
                   </div>
                 </div>
               </div>
@@ -92,9 +73,8 @@
         </div>
 
 
-
-
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
 <script >
 
@@ -110,6 +90,7 @@
 
 
 </script>
+
 
 
 @endsection

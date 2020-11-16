@@ -97,7 +97,10 @@ class ProductController extends Controller
       }
       else
       {
-        $image = Product:: p_image;
+        $i= Product::where('id',$id)->first();
+        //dd($i);
+        $image = $i -> p_image;
+
       }
 
        Product::where('id',$id)->update([

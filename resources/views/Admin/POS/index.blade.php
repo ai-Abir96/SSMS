@@ -1,4 +1,4 @@
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <style>
@@ -17,7 +17,24 @@ font-size: 22px;
 
 </style>
 
-
+@if(session()->get('success'))
+  <div class="alert alert-success">
+    {{ session()->get('success') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <br />
+@endif
+@if(session()->get('error'))
+  <div class="alert alert-danger">
+    {{ session()->get('error') }}
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+  </div>
+  <br />
+@endif
   <div class="row ">
     <div class="col-md-8 p-2" >
         <input type="text" id="myFilter" class="form-control" onkeyup="myFunction()" placeholder="Search for names..">
@@ -58,7 +75,11 @@ font-size: 22px;
                <h2>{{$product->stocks->p_name}}</h2>
                <p id ="pr_price" class="price">{{$product->p_price}}৳</p>
                <h4 class="discount"> Discount:{{$product->p_discount}}%</h4>
-               <h3 class="stocks">Available : {{$product->stocks->quantity}}</h3>
+               @if($product->stocks->quantity != 0)
+               <h3 class="stocks" style="color:green;">Available : {{$product->stocks->quantity}}</h3>
+               @else
+               <h3 class="stocks" style="color:red;">Out of Stock</h3>
+               @endif
 
 
             @endif
@@ -169,13 +190,23 @@ font-size: 22px;
                     <label for="name" class="col-md-4 col-form-label text-md-right">Please Select  A payment Method</label>
                     <div class="col-md-6">
                       <select class="form-control" name="status">
-                          <option>------Please Select------</option>
                           <option name="cash">Cash</option>
                       </select>
 
-                      Enter Amount : <input type="number" name="e_amount" id="amo">
-                      Return Money : <input type="number" name="r_money" id="mon">
+
                     </div>
+                    <label for="name" class="col-md-4 col-form-label text-md-right">Enter Amount</label>
+                    <div class="col-md-6">
+                    <input class="form-control" type="number" name="e_amount" id="amo">
+
+                    </div>
+                    <label for="name" class="col-md-4 col-form-label text-md-right">Return Money</label>
+                    <div class="col-md-6">
+
+                      <input class="form-control" type="number" name="r_money" id="mon">
+
+                    </div>
+
 
 
 
@@ -198,7 +229,7 @@ font-size: 22px;
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="{{asset('js/jquerypos.min.js')}}"></script>
 <script>
 
 
@@ -290,15 +321,25 @@ function addtocart(p_code,p_id,p_price,p_discount){
   }
 
 
-
-
-
-
-
-
+func
 
 </script>
+<script type="text/javascript">
+  $(document).ready(function(){
 
+    $('#amo').keyup(function() {
+      var q = $(this).val();
+      var total = document.getElementById("t_amt").value;
+      var r_money = q - total;
+      if(r_money>0){
+        document.getElementById("mon").value = r_money;
+      }
+
+
+  });
+
+});
+</script>
 
 
 

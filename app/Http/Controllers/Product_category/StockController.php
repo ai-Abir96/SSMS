@@ -99,11 +99,20 @@ class StockController extends Controller
         'fcat_id'=> $request-> fcat_id,
         'fscat_id'=> $request-> fscat_id,
         'fsup_id'=> $request-> fsup_id,
-        'quantity'=> $request-> quantity,
-        'st_price'=> $request-> st_price,
         'description'=> $request-> description
       ]);
 
+        return redirect()->route('stock_index')
+                  ->with('success','Stock updated successfully.');
+    }
+
+    public function update_quantity_price(Request $request)
+    {
+      $id = $request -> id;
+        Stock::where('id',$id)->update([
+          'quantity'=> $request-> quantity,
+          'st_price'=> $request-> st_price,
+        ]);
         return redirect()->route('stock_index')
                   ->with('success','Stock updated successfully.');
     }

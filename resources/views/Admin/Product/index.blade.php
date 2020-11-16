@@ -1,4 +1,4 @@
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 
@@ -12,7 +12,6 @@
     </div>
     <br />
   @endif
-
   <div class="container">
       <div class="row justify-content-center">
           <div class="col-md-12">

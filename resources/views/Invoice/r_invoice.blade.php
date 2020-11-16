@@ -1,12 +1,13 @@
-@extends((Auth::user()->roles->pluck('name')=='Admin') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <div class="container">
-  <div class="card">
+  <span class="float-right"> <button onclick="myApp.printTable()" >Print</button> </span>
+  <div id="toPrint" class="card">
 <div class="card-header">
 Refund Invoice No
-<strong>{{$rp-> id}}/{{$rp->created_at}}</strong>
-  <span class="float-right"> <button>Print</button> </span>
+<strong>{{$rp-> id}}/{{$rp->created_at->toDateString()}}</strong>
+
 
 </div>
 <div class="card-body">
@@ -93,4 +94,18 @@ Refund Invoice No
 </div>
 </div>
 </div>
+<script >
+
+  var myApp = new function () {
+         this.printTable = function () {
+             var tab = document.getElementById('toPrint');
+             var win = window.open('', '', 'height=700,width=700');
+             win.document.write(tab.outerHTML);
+             win.document.close();
+             win.print();
+         }
+     }
+
+
+</script>
 @endsection

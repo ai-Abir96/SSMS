@@ -1,8 +1,4 @@
-@if((Auth::user()->roles->pluck('name')) == 'Admin')
-  @extends('Dashboard.admin_dashboard')
-@else((Auth::user()->roles->pluck('name')) == 'Salesman')
-  @extends('Dashboard.salesman_dashboard')
-@endif
+@extends((Auth::user()->roles->pluck('id')=='[1]') ? 'Dashboard.admin_dashboard' : 'Dashboard.salesman_dashboard')
 
 @section('content')
 <style>
@@ -201,7 +197,7 @@ font-size: 22px;
 </div>
 
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+<script src="{{asset('js/jquerypos.min.js')}}"></script>
 <script type="text/javascript">
 
 

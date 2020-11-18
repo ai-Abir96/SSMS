@@ -39,7 +39,7 @@ function nextPrev(n) {
   showTab(currentTab);
 }
 
-function validateForm() {
+function validateForm(fname) {
   // This function deals with validation of the form fields
   var x, y, i, valid = true;
   x = document.getElementsByClassName("tab");
@@ -53,7 +53,11 @@ function validateForm() {
       // and set the current valid status to false:
       valid = false;
     }
+
   }
+
+
+
   // If the valid status is true, mark the step as finished and valid:
   if (valid) {
     document.getElementsByClassName("step")[currentTab].className += " finish";
@@ -70,3 +74,8 @@ function fixStepIndicator(n) {
   //... and adds the "active" class to the current step:
   x[n].className += " active";
 }
+
+
+$(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})

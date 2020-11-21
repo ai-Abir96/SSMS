@@ -10,18 +10,26 @@
     <title>{{ config('app.name', 'SSMS') }}</title>
 
     <!-- Scripts -->
-
+    <script src="{{ asset('js/bootstrap4_5_3.min.js') }}" defer></script>
+    <script src="{{ asset('js/jquery3_5_1.min.js') }}" defer></script>
+    <script src="{{ asset('js/popper.min.js') }}" defer></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="{{ asset('js/form_snippet.js') }}" defer></script>
-    <!-- <script src="{{ asset('js/ajax-int-tel-utils.js') }}" defer></script> -->
+    <script src="{{ asset('js/employeeform.js') }}" defer></script>
+
+
+
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
-      <!-- <link href="{{ asset('css/int-tel.css') }}" rel="stylesheet"> -->
+
+      <link href="{{ asset('css/bootstrap4_5_3.min.css') }}" rel="stylesheet">
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-      <link href="{{ asset('css/form-snippet.css') }}" rel="stylesheet">
+      <link href="{{ asset('css/employeeform.css') }}" rel="stylesheet">
+
+
+
 </head>
 <body style="background-image:url('{{asset('Images/home.jpg')}}');">
   <header >

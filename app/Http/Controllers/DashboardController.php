@@ -24,6 +24,10 @@ class DashboardController extends Controller
       return view('Dashboard.salesman_dashboard');
   }
 
+  public function demo()
+  {
+      return view('Employee.Personal_info.create1');
+  }
 
 
 

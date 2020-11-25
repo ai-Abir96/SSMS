@@ -16,8 +16,8 @@ class CreateEContactInfosTable extends Migration
         Schema::create('e_contact_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('ec_user_id')->unsigned();
-            $table->integer('emp_phone1');
-            $table->integer('emp_phone2');
+            $table->string('emp_phone1',11);
+            $table->string('emp_phone2',11);
             $table->string('emp_email');
             $table->string('emp_preaddress');
             $table->string('emp_peraddress');

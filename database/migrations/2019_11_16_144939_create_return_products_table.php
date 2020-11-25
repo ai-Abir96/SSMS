@@ -24,8 +24,8 @@ class CreateReturnProductsTable extends Migration
             $table->string('discount');
             $table->string('cause');
             $table->integer('quantity');
-            $table->integer('amount');
-            $table->integer('total');
+            $table->float('amount',10,2);
+            $table->float('total',10,2);
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('stocks')->onDelete('cascade');

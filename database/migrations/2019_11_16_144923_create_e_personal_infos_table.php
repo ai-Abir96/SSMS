@@ -19,7 +19,7 @@ class CreateEPersonalInfosTable extends Migration
             $table->string('emp_image');
             $table->string('emp_fname');
             $table->string('emp_lname');
-            $table->string('employee_nid');
+            $table->string('employee_nid',18);
             $table->date('emp_birth_date');
             $table->integer('emp_age');
             $table->string('emp_gender');

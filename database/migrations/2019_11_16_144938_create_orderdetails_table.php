@@ -20,7 +20,7 @@ class CreateOrderdetailsTable extends Migration
             $table->integer('quantity');
             $table->float('unitprice');
             $table->integer('discount')->nullable();
-            $table->float('amount');
+            $table->float('amount',10,2);
             $table->timestamps();
 
             $table->foreign('product_id')->references('id')->on('stocks')->onDelete('cascade');

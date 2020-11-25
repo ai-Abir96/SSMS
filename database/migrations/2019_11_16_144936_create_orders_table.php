@@ -17,7 +17,7 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->biginteger('user_id')->unsigned();
             $table->biginteger('customer_id')->unsigned();
-            $table->integer('totalamount');
+            $table->float('totalamount',10,2);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');

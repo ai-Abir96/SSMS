@@ -75,7 +75,7 @@ Route::group(['middleware'=>['auth']],function(){
     Route::get('/employee/job/position/{id}/update', 'Employee\E_positionController@edit')->name('Epostion_update_page');
     Route::PATCH('/employee/job/position/update/{id}', 'Employee\E_positionController@update')->name('Epostion_update');
 
-  //Route::PATCH('/employee/job/position/delete/{id}', 'Employee\E_positionController@destroy')->name('Epostion_delete');
+    Route::PATCH('/employee/job/position/delete/{id}', 'Employee\E_positionController@destroy')->name('Epostion_delete');
     //employee job position end
 
 

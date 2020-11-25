@@ -9,9 +9,13 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <title>SSMS</title>
     <!-- Latest compiled and minified CSS -->
+    
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/homepagecss.css') }}" >
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+
+   
+
 
 </head>
 
@@ -79,6 +83,7 @@
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <!-- Latest compiled and minified JavaScript -->
     <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+
 
   <script type="text/javascript">
   $(document).ready(function () {

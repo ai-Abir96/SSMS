@@ -27,16 +27,21 @@
       <link href="{{ asset('css/bootstrap4_5_3.min.css') }}" rel="stylesheet">
       <link href="{{ asset('css/app.css') }}" rel="stylesheet">
       <link href="{{ asset('css/employeeform.css') }}" rel="stylesheet">
+      <style>
+        body  {
+            background-image: url("{{asset('Images/bg.jpg')}}");
+        }
+    </style>
 
 
 
 </head>
-<body style="background-image:url('{{asset('Images/home.jpg')}}');">
+<body>
   <header >
 
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark bg-transparent shadow-sm" >
-            <div class="container">
+        <nav class="navbar navbar-expand-md navbar-fixed-top navbar-light bg-transparent shadow" data-spy="affix" data-offset-top="205">
+            <div class="container-fluid">
                 <a class="navbar-brand" style="color:white;" href="{{ url('/') }}"><strong>
                     {{ config('app.name', 'SSMS') }}<strong>
                 </a>

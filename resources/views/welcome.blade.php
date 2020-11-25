@@ -1,6 +1,6 @@
 
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" >
 
 <head>
     <meta charset="utf-8">
@@ -13,13 +13,17 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/homepagecss.css') }}" >
     <link rel="stylesheet" href="{{ asset('css/style.css')}}">
-
+    <style>
+        body  {
+            background-image: url("{{asset('Images/bg.jpg')}}");
+        }
+    </style>
    
 
 
 </head>
 
-<body data-spy="scroll" data-target="#myScrollspy">
+<body data-spy="scroll" data-target="#myScrollspy" >
 
   <nav class="navbar navbar-default navbar-fixed-top" data-spy="affix" data-offset-top="205">
           <div class="container-fluid">
@@ -43,14 +47,15 @@
               </div>
           </div>
       </nav>
-    <header style="background-image:url('{{asset('Images/home.jpg')}}');">
-        <div class="header-content">
+    <header >
+        <div class="header-content" >
             <div class="header-content-inner">
                 <h1>Super Shop Management System</h1>
                 <p>...Please Log In To Continue...</p>
             </div>
         </div>
     </header>
+
 
 
     <footer id="contact">

@@ -10,7 +10,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>SSMS</title>
+    <title>{{ config('app.name', 'SSMS') }}</title>
 
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -60,9 +60,9 @@
 
     <!-- Latest compiled and minified CSS -->
     
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" >
-    <link rel="stylesheet" href="{{ asset('css/homepagecss.css') }}" >
-    <link rel="stylesheet" href="{{ asset('css/style.css')}}">
+    <link rel="stylesheet" href="/css/bootstrap.min.css" >
+    <link rel="stylesheet" href="/css/homepagecss.css" >
+    <link rel="stylesheet" href="/css/style.css">
     <style>
         body  {
             background-image: url("{{asset('Images/bg.jpg')}}");

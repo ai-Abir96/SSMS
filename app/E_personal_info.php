@@ -15,6 +15,7 @@ class E_personal_info extends Model
       'employee_nid',
       'emp_birth_date',
       'emp_age',
+      'emp_gender',
       'emp_blood',
       'emp_marital_status',
 

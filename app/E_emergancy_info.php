@@ -12,6 +12,7 @@ class E_emergancy_info extends Model
       'ec_name',
       'ec_phone1',
       'ec_phone2',
+      'ec_gender',
       'ec_relation',
       'ec_address',
 

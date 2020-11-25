@@ -19,6 +19,7 @@ class CreateEEmergancyInfosTable extends Migration
             $table->string('ec_name');
             $table->integer('ec_phone1');
             $table->integer('ec_phone2');
+            $table->string('ec_gender');
             $table->string('ec_relation');
             $table->string('ec_address');
             $table->timestamps();

@@ -62,6 +62,17 @@
                      </div>
 
                      <div class="form-group row">
+                      <label for="gender" class="col-md-3 col-form-lebel text-md-right">{{__('Gender')}}</label>
+                      <div class="col-md-6">
+                        <select class="form-control" id="gender" name="emp_gender" required>
+                         <option>Male</option>
+                         <option>Female</option>
+                         <option>Other</option>
+                       </select>
+                      </div>
+                     </div>
+
+                     <div class="form-group row">
                        <label for="bloodgroup" class="col-md-3 col-form-lebel text-md-right">{{__('Blood Group')}}</label>
                        <div class="col-md-6">
                          <select class="form-control" id="bloodgroup" name="emp_blood" required>
@@ -114,7 +125,7 @@
                    <div class="form-group row">
                        <label for="phonenumber2" class="col-md-3 col-form-label text-md-right">{{ __('Phone Number (Alternate) ') }}</label>
                        <div class="col-md-6">
-                         <input id="phonenumber2" type="number" class="form-control" name="emp_phone2" placeholder="Phone Number(Alternate)" required>
+                         <input id="phonenumber2" type="text" class="form-control" name="emp_phone2" placeholder="Phone Number(Alternate)" >
                           <b class="form-text text-danger" id="phonenumber2Error"></b>
                        </div>
                    </div>
@@ -169,7 +180,7 @@
                      <div class="form-group row">
                          <label for="ephonenumber" class="col-md-3 col-form-label text-md-right">{{ __('Phone Number') }}</label>
                          <div class="col-md-6">
-                           <input id="ephonenumber" type="number" class="form-control" name="ec_phone1" placeholder="Phone Number" required>
+                           <input id="ephonenumber" type="text" class="form-control" name="ec_phone1" placeholder="Phone Number" required>
                            <b class="form-text text-danger" id="ephonenumberError"></b>
                          </div>
                      </div>
@@ -177,9 +188,20 @@
                      <div class="form-group row">
                          <label for="ephonenumber2" class="col-md-3 col-form-label text-md-right">{{ __('Phone Number (Alternate) ') }}</label>
                          <div class="col-md-6">
-                           <input id="ephonenumber2" type="number" class="form-control" name="ec_phone2" placeholder="Phone Number(Alternate)" required>
+                           <input id="ephonenumber2" type="text" class="form-control" name="ec_phone2" placeholder="Phone Number(Alternate)" >
                            <b class="form-text text-danger" id="ephonenumber2Error"></b>
                          </div>
+                     </div>
+                     
+                     <div class="form-group row">
+                      <label for="gender1" class="col-md-3 col-form-lebel text-md-right">{{__('Gender')}}</label>
+                      <div class="col-md-6">
+                        <select class="form-control" id="gender1" name="ec_gender" required>
+                         <option>Male</option>
+                         <option>Female</option>
+                         <option>Other</option>
+                       </select>
+                      </div>
                      </div>
 
                      <div class="form-group row">

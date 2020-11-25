@@ -22,6 +22,7 @@ class CreateEPersonalInfosTable extends Migration
             $table->integer('employee_nid');
             $table->date('emp_birth_date');
             $table->integer('emp_age');
+            $table->string('emp_gender');
             $table->string('emp_blood');
             $table->string('emp_marital_status');
             $table->timestamps();
